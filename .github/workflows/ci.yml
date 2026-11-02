@@ -1,11 +1,7 @@
-# CI/CD for the MOOVE design system.
-#   pull request / push  -> verify (tokens, tests, types, lint, Storybook tests, builds)
-#   push to main         -> verify, then deploy Storybook + the shadcn registry to GitHub Pages
-#
-# One-time setup in the GitHub repo: Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
-# Published layout:   https://<owner>.github.io/<repo>/        Storybook
-#                     https://<owner>.github.io/<repo>/r/      registry JSON ({name}.json)
-name: CI/CD
+# CI for the MOOVE design system (no deployment).
+#   pull request / push to main -> verify: tokens, tests, types, lint, Storybook tests, builds
+# The ruleset (.github/rulesets/protect-main.json) requires the `verify` check before a PR can merge.
+name: CI
 
 on:
   push:
@@ -16,10 +12,10 @@ on:
 permissions:
   contents: read
 
-# New pushes cancel running checks on branches and PRs; a deploy on main is never cancelled midway.
+# A newer push to the same branch or PR cancels the check that is still running.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+  cancel-in-progress: true
 
 env:
   CI: "true"
@@ -74,32 +70,3 @@ jobs:
 
       - name: Build registry
         run: bun run registry:build
-
-      - name: Assemble site
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-        run: |
-          mkdir -p _site/r
-          cp -R storybook-static/. _site/
-          cp -R public/r/. _site/r/
-          touch _site/.nojekyll
-
-      - name: Upload Pages artifact
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-        uses: actions/upload-pages-artifact@v5
-        with:
-          path: _site
-
-  deploy:
-    needs: verify
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v5

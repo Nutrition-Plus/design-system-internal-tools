@@ -29,7 +29,7 @@ registry.json                 → bun run registry:build → public/r/*.json
 
 ```bash
 # 1. โปรเจกต์ที่มี shadcn แล้ว (components.json) ใช้ base: radix
-bunx --bun shadcn@latest registry add @moove=https://nutrition-plus.github.io/design-system-internal-tools/r/{name}.json
+bunx --bun shadcn@latest registry add @moove=<REGISTRY_HOST>/r/{name}.json
 
 # 2. ติดตั้ง theme และ components ที่ต้องใช้
 bunx --bun shadcn@latest add @moove/moove-theme @moove/button @moove/data-table @moove/app-shell

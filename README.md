@@ -56,13 +56,9 @@ registry.json → public/r/   shadcn registry (@moove)
 | 6 | Registry + เอกสารการใช้งานและการดูแล | ✅ |
 | ถัดไป | ตัดสินใจ host ของ registry · CI · Date range picker · Combobox ขั้นสูง · Dark mode · Visual regression · sync กับ Figma | ⏳ |
 
-## Deploy (GitHub Pages)
+## CI
 
-Merging to `main` publishes (see [CONTRIBUTING.md](CONTRIBUTING.md) for setup and branch protection):
+Every pull request and push to `main` runs the `verify` check (`.github/workflows/ci.yml`): generated tokens up to date, `bun test`, typecheck, lint, story tests with accessibility checks, and Storybook and registry builds. `main` accepts changes only through a pull request that passes it (see [CONTRIBUTING.md](CONTRIBUTING.md)).
 
-- Storybook: `https://nutrition-plus.github.io/design-system-internal-tools/`
-- shadcn registry: `https://nutrition-plus.github.io/design-system-internal-tools/r/{name}.json`
-
-Other systems register it with
-`bunx --bun shadcn@latest registry add @moove=https://nutrition-plus.github.io/design-system-internal-tools/r/{name}.json`.
-
+Nothing is deployed automatically. To publish the registry for other systems, run `bun run registry:build` and host `public/r/` on an internal static host (decision D4 is still open), then register it with
+`bunx --bun shadcn@latest registry add @moove=<REGISTRY_HOST>/r/{name}.json`.
