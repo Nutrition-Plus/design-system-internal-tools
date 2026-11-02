@@ -26,7 +26,7 @@ bun run storybook        # เปิดที่ localhost:8000 (ถ้า port 
 ต้องมี React 19 และ Tailwind CSS 4 ในโปรเจกต์ปลายทาง (เป็น peer dependency)
 
 ```bash
-bun add git+<REPO_URL>#v0.2.0
+bun add git+https://github.com/Nutrition-Plus/design-system-internal-tools.git#v0.2.0
 ```
 
 ใน CSS entry ของโปรเจกต์ (เช่น `src/index.css`):
