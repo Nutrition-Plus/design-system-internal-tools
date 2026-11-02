@@ -1,11 +1,34 @@
 {
   "name": "@moove/design-system",
-  "private": true,
   "version": "0.1.0",
   "type": "module",
+  "description": "MOOVE Design System for OMS and internal tools: tokens, shadcn/ui components, patterns and Storybook docs.",
+  "main": "./dist-lib/index.js",
+  "module": "./dist-lib/index.js",
+  "types": "./dist-lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist-lib/index.d.ts",
+      "import": "./dist-lib/index.js"
+    },
+    "./styles.css": "./src/styles/moove.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist-lib",
+    "src/styles"
+  ],
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:lib": "vite build -c vite.config.lib.ts && tsc -p tsconfig.lib.json && bun scripts/fix-dts-aliases.ts",
+    "prepack": "bun run build:lib",
     "tokens": "bun scripts/build-tokens.ts",
     "lint": "eslint .",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
@@ -21,15 +44,15 @@
     "preview": "vite preview --port 8000 --strictPort",
     "registry:serve": "bun scripts/serve-registry.ts"
   },
+  "peerDependencies": {
+    "react": "^19",
+    "react-dom": "^19",
+    "tailwindcss": "^4"
+  },
   "dependencies": {
-    "@fontsource-variable/inter": "^5.3.0",
-    "@fontsource-variable/jetbrains-mono": "^5.3.0",
-    "@fontsource-variable/noto-sans-thai": "^5.3.0",
-    "@fontsource/anuphan": "^5.3.0",
     "@fontsource/ibm-plex-mono": "^5.3.0",
     "@fontsource/ibm-plex-sans": "^5.3.0",
     "@fontsource/ibm-plex-sans-thai": "^5.3.0",
-    "@tailwindcss/vite": "^4",
     "@tanstack/react-table": "^9.3.1",
     "class-variance-authority": "^0.7.1",
     "cmdk": "^1.1.1",
@@ -37,21 +60,23 @@
     "date-fns": "^4.4.0",
     "lucide-react": "^1.65.0",
     "radix-ui": "^1.8.1",
-    "react": "^19.3.1",
     "react-day-picker": "^10.0.2",
-    "react-dom": "^19.3.1",
     "recharts": "3.8.0",
     "shadcn": "^4.23.0",
     "sonner": "^2.0.8",
-    "tailwindcss": "^4",
     "tw-animate-css": "^1.4.0"
   },
   "devDependencies": {
     "@eslint/js": "^10",
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@fontsource-variable/noto-sans-thai": "^5.3.0",
+    "@fontsource/anuphan": "^5.3.0",
     "@storybook/addon-a11y": "^10.6.5",
     "@storybook/addon-docs": "^10.6.5",
     "@storybook/addon-vitest": "^10.6.5",
     "@storybook/react-vite": "^10.6.5",
+    "@tailwindcss/vite": "^4",
     "@types/bun": "^1.4.4",
     "@types/node": "^24",
     "@types/react": "^19",
@@ -71,10 +96,10 @@
     "storybook": "^10.6.5",
     "storybook-addon-pseudo-states": "10.6.5",
     "storybook-dark-mode": "5.0.0",
+    "tailwindcss": "^4",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8",
     "vite": "^8",
     "vitest": "^5.0.5"
-  },
-  "description": "MOOVE Design System for OMS and internal tools: tokens, shadcn/ui components, patterns and Storybook docs."
+  }
 }

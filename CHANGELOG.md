@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- Installable package `@moove/design-system` (`bun add` from git): `dist-lib/` (ESM + type declarations, committed and checked in CI) and `styles.css` (tokens, fonts, base, chart themes, Tailwind and shadcn imports).
+- Barrel export `src/index.ts` for all components, patterns, `dataTableFeatures`, `use-mobile` and `cn`.
+
+### Changed
+- `package.json` is no longer `private`. React and Tailwind are peer dependencies; components' runtime libraries are dependencies.
+- `src/index.css` now imports `src/styles/moove.css`.
+
 ## 0.1.0 — 2026-10-30
 
 ### Added
