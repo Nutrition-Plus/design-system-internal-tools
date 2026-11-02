@@ -60,9 +60,9 @@ registry.json → public/r/   shadcn registry (@moove)
 
 Merging to `main` publishes (see [CONTRIBUTING.md](CONTRIBUTING.md) for setup and branch protection):
 
-- Storybook: `https://<owner>.github.io/<repo>/`
-- shadcn registry: `https://<owner>.github.io/<repo>/r/{name}.json`
+- Storybook: `https://nutrition-plus.github.io/design-system-internal-tools/`
+- shadcn registry: `https://nutrition-plus.github.io/design-system-internal-tools/r/{name}.json`
 
 Other systems register it with
-`bunx --bun shadcn@latest registry add @moove=https://<owner>.github.io/<repo>/r/{name}.json`.
+`bunx --bun shadcn@latest registry add @moove=https://nutrition-plus.github.io/design-system-internal-tools/r/{name}.json`.
 
