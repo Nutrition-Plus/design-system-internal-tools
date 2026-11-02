@@ -11,6 +11,6 @@ declare const inputGroupButtonVariants: (props?: ({
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 declare function InputGroupButton({ className, type, variant, size, ...props }: Omit<React.ComponentProps<typeof Button>, "size"> & VariantProps<typeof inputGroupButtonVariants>): React.JSX.Element;
 declare function InputGroupText({ className, ...props }: React.ComponentProps<"span">): React.JSX.Element;
-declare function InputGroupInput({ className, ...props }: React.ComponentProps<"input">): React.JSX.Element;
+declare function InputGroupInput({ className, ...props }: Omit<React.ComponentProps<"input">, "size">): React.JSX.Element;
 declare function InputGroupTextarea({ className, ...props }: React.ComponentProps<"textarea">): React.JSX.Element;
 export { InputGroup, InputGroupAddon, InputGroupButton, InputGroupText, InputGroupInput, InputGroupTextarea, };

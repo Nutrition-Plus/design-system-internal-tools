@@ -25,6 +25,9 @@ export default defineConfig({
     },
     rollupOptions: {
       external: (id) => external.some((name) => id === name || id.startsWith(`${name}/`)),
+      output: {
+        banner: '"use client";',
+      },
     },
   },
 })
