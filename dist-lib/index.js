@@ -1,3 +1,4 @@
+"use client";
 import * as e from "react";
 import { useMemo as t } from "react";
 import { cn as n, cn as r } from "cn";
