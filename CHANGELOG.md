@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.2.0 — 2026-11-02
 
 ### Added
 - Installable package `@moove/design-system` (`bun add` from git): `dist-lib/` (ESM + type declarations, committed and checked in CI) and `styles.css` (tokens, fonts, base, chart themes, Tailwind and shadcn imports).

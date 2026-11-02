@@ -21,6 +21,30 @@ bun run storybook        # เปิดที่ localhost:8000 (ถ้า port 
 | `bun run registry:serve` | เปิด registry ที่ <http://localhost:8787> สำหรับทดสอบติดตั้ง |
 | `bun scripts/screenshot.ts <story-id>` | จับภาพ story (ต้องเปิด Storybook อยู่) |
 
+## ติดตั้งในระบบอื่น
+
+ต้องมี React 19 และ Tailwind CSS 4 ในโปรเจกต์ปลายทาง (เป็น peer dependency)
+
+```bash
+bun add git+<REPO_URL>#v0.2.0
+```
+
+ใน CSS entry ของโปรเจกต์ (เช่น `src/index.css`):
+
+```css
+@import "tailwindcss";
+@import "@moove/design-system/styles.css";
+@source "../node_modules/@moove/design-system/dist-lib";
+```
+
+`@source` ทำให้ Tailwind สแกน class ใน component ของ package ด้วย ถ้าไม่ใส่ สไตล์ของ component จะหาย
+
+```tsx
+import { Button, DataTable, PageHeader } from "@moove/design-system"
+```
+
+package ส่ง `dist-lib/` (ESM และ type declarations) ที่ commit ไว้ใน repo ไม่ต้อง build ก่อนติดตั้ง ดูรายการเปลี่ยนแปลงใน [CHANGELOG.md](CHANGELOG.md)
+
 ## โครงสร้าง
 
 ```text
