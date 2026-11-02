@@ -1,0 +1,287 @@
+{
+  "$description": "Color pairs used in real UI. `bun test` checks every pair against `min` (4.5 = text AA, 3 = UI component / large text AA). Pairs with `forbidden: true` document combinations that must NOT be used for text; the test asserts they really fail so the docs stay truthful.",
+  "pairs": [
+    {
+      "fg": "foreground",
+      "bg": "background",
+      "min": 4.5,
+      "usage": "ข้อความหลักบนพื้นขาว"
+    },
+    {
+      "fg": "foreground",
+      "bg": "secondary",
+      "min": 4.5,
+      "usage": "ข้อความหลักบนพื้น Secondary"
+    },
+    {
+      "fg": "foreground-secondary",
+      "bg": "background",
+      "min": 4.5,
+      "usage": "Label และหัวตาราง"
+    },
+    {
+      "fg": "foreground-secondary",
+      "bg": "secondary",
+      "min": 4.5,
+      "usage": "Label บนพื้น Secondary"
+    },
+    {
+      "fg": "muted-foreground",
+      "bg": "background",
+      "min": 4.5,
+      "usage": "Helper text บนพื้นขาว"
+    },
+    {
+      "fg": "muted-foreground",
+      "bg": "secondary",
+      "min": 4.5,
+      "usage": "Helper text บนพื้น Secondary"
+    },
+    {
+      "fg": "muted-foreground",
+      "bg": "accent",
+      "min": 4.5,
+      "usage": "ข้อความรองในแถวที่เลือก"
+    },
+    {
+      "fg": "primary",
+      "bg": "background",
+      "min": 4.5,
+      "usage": "ลิงก์และปุ่ม outline"
+    },
+    {
+      "fg": "primary",
+      "bg": "secondary",
+      "min": 4.5,
+      "usage": "ลิงก์บนพื้น Secondary"
+    },
+    {
+      "fg": "primary-foreground",
+      "bg": "primary",
+      "min": 4.5,
+      "usage": "ข้อความบนปุ่มหลัก"
+    },
+    {
+      "fg": "primary-foreground",
+      "bg": "primary-hover",
+      "min": 4.5,
+      "usage": "ปุ่มหลักตอน hover"
+    },
+    {
+      "fg": "accent-foreground",
+      "bg": "accent",
+      "min": 4.5,
+      "usage": "เมนูหรือแถวที่เลือก"
+    },
+    {
+      "fg": "secondary-foreground",
+      "bg": "secondary-hover",
+      "min": 4.5,
+      "usage": "ปุ่ม secondary ตอน hover"
+    },
+    {
+      "fg": "highlight-foreground",
+      "bg": "highlight-subtle",
+      "min": 4.5,
+      "usage": "แท็ก highlight"
+    },
+    {
+      "fg": "destructive-foreground",
+      "bg": "destructive",
+      "min": 4.5,
+      "usage": "ปุ่มลบ"
+    },
+    {
+      "fg": "destructive-foreground",
+      "bg": "destructive-hover",
+      "min": 4.5,
+      "usage": "ปุ่มลบตอน hover"
+    },
+    {
+      "fg": "destructive",
+      "bg": "background",
+      "min": 4.5,
+      "usage": "ข้อความ error ใต้ช่องกรอก"
+    },
+    {
+      "fg": "success-foreground",
+      "bg": "success-subtle",
+      "min": 4.5,
+      "usage": "Badge/Alert สำเร็จ"
+    },
+    {
+      "fg": "warning-foreground",
+      "bg": "warning-subtle",
+      "min": 4.5,
+      "usage": "Badge/Alert เตือน"
+    },
+    {
+      "fg": "danger-foreground",
+      "bg": "danger-subtle",
+      "min": 4.5,
+      "usage": "Badge/Alert ผิดพลาด"
+    },
+    {
+      "fg": "info-foreground",
+      "bg": "info-subtle",
+      "min": 4.5,
+      "usage": "Badge/Alert ข้อมูล"
+    },
+    {
+      "fg": "success-foreground",
+      "bg": "background",
+      "min": 4.5,
+      "usage": "ข้อความสถานะบนพื้นขาว"
+    },
+    {
+      "fg": "warning-foreground",
+      "bg": "background",
+      "min": 4.5,
+      "usage": "ข้อความสถานะบนพื้นขาว"
+    },
+    {
+      "fg": "danger-foreground",
+      "bg": "background",
+      "min": 4.5,
+      "usage": "ข้อความสถานะบนพื้นขาว"
+    },
+    {
+      "fg": "info-foreground",
+      "bg": "background",
+      "min": 4.5,
+      "usage": "ข้อความสถานะบนพื้นขาว"
+    },
+    {
+      "fg": "input",
+      "bg": "background",
+      "min": 3,
+      "usage": "ขอบช่องกรอก (non-text)"
+    },
+    {
+      "fg": "input",
+      "bg": "secondary",
+      "min": 3,
+      "usage": "ขอบช่องกรอกบนพื้น Secondary (non-text)"
+    },
+    {
+      "fg": "input",
+      "bg": "accent",
+      "min": 3,
+      "usage": "Checkbox ในแถวที่เลือก (non-text)"
+    },
+    {
+      "fg": "input",
+      "bg": "secondary-hover",
+      "min": 3,
+      "usage": "Checkbox ในแถวตอน hover (non-text)"
+    },
+    {
+      "fg": "ring",
+      "bg": "background",
+      "min": 3,
+      "usage": "Focus ring (non-text)"
+    },
+    {
+      "fg": "ring",
+      "bg": "secondary",
+      "min": 3,
+      "usage": "Focus ring บนพื้น Secondary (non-text)"
+    },
+    {
+      "fg": "danger",
+      "bg": "background",
+      "min": 3,
+      "usage": "ไอคอนหรือ dot สถานะ danger (non-text)"
+    },
+    {
+      "fg": "sidebar-accent-foreground",
+      "bg": "sidebar-accent",
+      "min": 4.5,
+      "usage": "เมนูที่เลือกใน sidebar"
+    },
+    {
+      "fg": "sidebar-foreground",
+      "bg": "sidebar",
+      "min": 4.5,
+      "usage": "เมนูใน sidebar"
+    },
+    {
+      "fg": "foreground",
+      "bg": "field",
+      "min": 4.5,
+      "usage": "ข้อความในช่องกรอกที่เป็นพื้นเทา"
+    },
+    {
+      "fg": "muted-foreground",
+      "bg": "field",
+      "min": 4.5,
+      "usage": "Placeholder บนช่องกรอกพื้นเทา"
+    },
+    {
+      "fg": "foreground",
+      "bg": "field-hover",
+      "min": 4.5,
+      "usage": "ข้อความตอน hover บนช่องกรอก"
+    },
+    {
+      "fg": "foreground-subtle",
+      "bg": "background",
+      "min": 4.5,
+      "usage": "ข้อความเบาที่สุด (เครดิต/แฮนเดิล) บนพื้น background"
+    },
+    {
+      "fg": "foreground-subtle",
+      "bg": "secondary",
+      "min": 4.5,
+      "usage": "ข้อความเบาที่สุด (เครดิต/แฮนเดิล) บนพื้น secondary"
+    },
+    {
+      "fg": "foreground-subtle",
+      "bg": "sidebar",
+      "min": 4.5,
+      "usage": "ข้อความเบาที่สุด (เครดิต/แฮนเดิล) บนพื้น sidebar"
+    },
+    {
+      "fg": "success",
+      "bg": "background",
+      "min": 4.5,
+      "forbidden": true,
+      "usage": "ห้ามใช้ Success เป็นสีข้อความ"
+    },
+    {
+      "fg": "warning",
+      "bg": "background",
+      "min": 4.5,
+      "forbidden": true,
+      "usage": "ห้ามใช้ Warning เป็นสีข้อความ"
+    },
+    {
+      "fg": "danger",
+      "bg": "background",
+      "min": 4.5,
+      "forbidden": true,
+      "usage": "ห้ามใช้ Danger เป็นสีข้อความ"
+    },
+    {
+      "fg": "info",
+      "bg": "background",
+      "min": 4.5,
+      "forbidden": true,
+      "usage": "ห้ามใช้ Info เป็นสีข้อความ"
+    },
+    {
+      "fg": "background",
+      "bg": "danger",
+      "min": 4.5,
+      "forbidden": true,
+      "usage": "ห้ามใช้ข้อความขาวบนพื้น #EF4444 (ใช้ destructive แทน)"
+    },
+    {
+      "fg": "border",
+      "bg": "background",
+      "min": 3,
+      "forbidden": true,
+      "usage": "ห้ามใช้ border เป็นขอบช่องกรอก (ใช้ input แทน)"
+    }
+  ]
+}

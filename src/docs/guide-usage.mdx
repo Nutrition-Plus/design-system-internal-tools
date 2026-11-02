@@ -1,0 +1,74 @@
+import { Meta } from "@storybook/addon-docs/blocks"
+
+<Meta title="Guides/Using in your app" />
+
+# นำไปใช้ในระบบอื่น
+
+Design system นี้ส่งต่อเป็น **shadcn registry** (`@moove`) ตาม OMS ADR-009: โค้ดถูกคัดลอกเข้า repo ของแต่ละระบบ และระบบนั้นเป็นเจ้าของโค้ด
+
+## โครงสร้าง
+
+```
+tokens/*.json                 ← แหล่งความจริงของ tokens (รูปแบบ W3C DTCG)
+  └ bun run tokens            → src/styles/tokens.css (CSS variables + @theme + type-*)
+                              → src/tokens/tokens.generated.ts (สำหรับเอกสาร)
+                              → tokens/build/tokens.json (สำหรับ Figma / เครื่องมืออื่น)
+src/styles/{fonts,base}.css   ← ฟอนต์และ base styles
+src/components/ui/*           ← shadcn primitives ที่ปรับเข้ากับ MOOVE แล้ว
+src/components/patterns/*     ← DataTable, ConfirmDialog, EmptyState/ErrorState, PageHeader, AppShell
+registry.json                 → bun run registry:build → public/r/*.json
+```
+
+| ชั้น | อยู่ที่ | ใครดูแล |
+|-|-|-|
+| Tokens, primitives, patterns | repo นี้ (registry `@moove`) | ทีม Design System |
+| Domain components (เช่น WorkStatusBadge, BlockerBadge) | repo ของแต่ละระบบ `src/components/domain/` | ทีมระบบนั้น |
+| Feature screens | repo ของแต่ละระบบ | ทีมระบบนั้น |
+
+## ติดตั้งในระบบใหม่ (Next.js หรือ Vite)
+
+```bash
+# 1. โปรเจกต์ที่มี shadcn แล้ว (components.json) ใช้ base: radix
+bunx --bun shadcn@latest registry add @moove=<REGISTRY_HOST>/r/{name}.json
+
+# 2. ติดตั้ง theme และ components ที่ต้องใช้
+bunx --bun shadcn@latest add @moove/moove-theme @moove/button @moove/data-table @moove/app-shell
+```
+
+3. แก้ไฟล์ CSS หลัก (`tailwindCssFile` ใน components.json) ให้เหลือเท่านี้ **และลบ `:root`, `.dark`, `@theme inline` เดิมของ shadcn ออก** (ถ้าไม่ลบ ค่าเดิมจะทับ tokens ของ MOOVE)
+
+```css
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "./styles/moove/fonts.css";
+@import "./styles/moove/tokens.css";
+@import "./styles/moove/base.css";
+```
+
+4. ตั้ง density และภาษาที่ `<html>`: `<html lang="th" data-density="comfortable">` (iPad/touch) หรือ `"compact"` (desktop)
+5. ห่อแอปด้วย `<TooltipProvider>` และใส่ `<Toaster />` หนึ่งครั้ง
+
+> ทดสอบขั้นตอนนี้แล้วกับโปรเจกต์ Vite ใหม่ (`shadcn init -t vite -b radix`): ติดตั้งผ่าน registry, typecheck และ `vite build` ผ่าน
+
+## อัปเดตเมื่อ design system ออกเวอร์ชันใหม่
+
+ไฟล์เป็นของแต่ละระบบแล้ว การ `add` ซ้ำจะทับการแก้ไข จึงต้องดู diff ก่อน:
+
+```bash
+bunx --bun shadcn@latest add @moove/button --dry-run
+bunx --bun shadcn@latest add @moove/button --diff button.tsx
+```
+
+- ไฟล์ที่ไม่ได้แก้เอง → ทับได้
+- ไฟล์ที่แก้เอง → merge ด้วยมือ แล้วพิจารณาเสนอการแก้นั้นกลับมาที่ design system
+- `moove-theme` (tokens) ควรอัปเดตตามเสมอ เพราะไม่ควรมีการแก้เฉพาะระบบ
+
+## สิ่งที่ปรับได้และไม่ควรปรับ
+
+| ปรับได้ต่อระบบ | ไม่ควรปรับ (เสนอเข้า design system แทน) |
+|-|-|
+| density, ชื่อระบบ โลโก้ เมนูใน AppShell | ค่าสี ฟอนต์ type scale radius |
+| คอลัมน์และแท็บของตาราง, ขนาดหน้า | ความหมายของสีสถานะ |
+| domain components, ข้อความในแอป | ความสูง control, focus ring |
+| ความกว้างเนื้อหาของหน้า | พฤติกรรมของ Dialog, DataTable, Form |

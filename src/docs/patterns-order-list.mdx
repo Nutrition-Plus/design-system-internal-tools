@@ -1,0 +1,35 @@
+import { Canvas, Meta } from "@storybook/addon-docs/blocks"
+import * as OrderList from "../examples/oms-order-list.stories"
+
+<Meta title="Patterns/Order List" />
+
+# หน้ารายการคำสั่งซื้อ
+
+โครงหน้ามาตรฐานสำหรับรายการข้อมูลจำนวนมาก ใช้ได้กับทุกระบบ (คำสั่งซื้อ พัสดุ สินค้า ผู้ใช้)
+
+```
+AppShell
+ └ PageHeader        ชื่อหน้า · คำอธิบาย · ปุ่ม (primary ไม่เกิน 1)
+ └ Tabs (line)       แบ่งตามสถานะ + ตัวนับ          ← ไม่บังคับ
+ └ DataTableToolbar  ค้นหา · ตัวกรอง · ล้างตัวกรอง · คอลัมน์
+ └ Bulk action bar   แสดงเมื่อเลือกแถว (พื้น Accent)
+ └ DataTable         loading / empty / error / rows
+ └ DataTablePagination
+```
+
+<Canvas of={OrderList.Default} />
+
+## กติกา
+
+- **State ของตัวกรอง การเรียง และหน้า** เก็บใน URL (เช่น `?status=review&channel=shopee&sort=-createdAt&page=2`) เพื่อแชร์ลิงก์และกดย้อนกลับได้
+- **ค่าเริ่มต้น** เรียงจากใหม่ไปเก่า, 20 แถวต่อหน้า
+- **คอลัมน์แรก** เป็นสิ่งที่ผู้ใช้ใช้อ้างอิง (เลขที่) และเป็นลิงก์เปิดรายละเอียด · คอลัมน์สถานะอยู่ถัดไป
+- **แตะแถว** เปิดรายละเอียดเป็น Sheet · ปุ่มและ checkbox ในแถวไม่ทำให้ Sheet เปิด
+- **Bulk action** แสดงจำนวนที่เลือกเสมอ และการกระทำที่ย้อนกลับยากต้องผ่าน ConfirmDialog
+- **จอเล็ก (< 768px)** เปลี่ยนตารางเป็นรายการการ์ด แสดงเฉพาะรหัส ยอด ลูกค้า และสถานะ
+
+## สถานะของหน้า
+
+<Canvas of={OrderList.Loading} />
+<Canvas of={OrderList.Empty} />
+<Canvas of={OrderList.Error} />

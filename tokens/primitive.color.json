@@ -1,0 +1,184 @@
+{
+  "$description": "Primitive palette. Do not use these directly in components; use semantic tokens instead.",
+  "palette": {
+    "$type": "color",
+    "blue": {
+      "$description": "Brand blue scale derived from Primary #045275 (hue ≈ 199°).",
+      "50": {
+        "$value": "#E6F0F5"
+      },
+      "100": {
+        "$value": "#CCE0EB"
+      },
+      "200": {
+        "$value": "#99C2D6"
+      },
+      "300": {
+        "$value": "#5E9DBC"
+      },
+      "400": {
+        "$value": "#2E7FA6"
+      },
+      "500": {
+        "$value": "#0A6E99"
+      },
+      "600": {
+        "$value": "#045275",
+        "$description": "Brand Primary"
+      },
+      "700": {
+        "$value": "#03405C"
+      },
+      "800": {
+        "$value": "#022F44"
+      },
+      "900": {
+        "$value": "#01202E"
+      }
+    },
+    "slate": {
+      "$description": "Cool neutral tinted toward the brand hue.",
+      "0": {
+        "$value": "#FFFFFF",
+        "$description": "Surface"
+      },
+      "50": {
+        "$value": "#F3F7FA",
+        "$description": "Brand Secondary"
+      },
+      "100": {
+        "$value": "#E9EFF3"
+      },
+      "200": {
+        "$value": "#D5DEE5"
+      },
+      "300": {
+        "$value": "#B4C1CB"
+      },
+      "400": {
+        "$value": "#7A8995",
+        "$description": "Darkest-light step that keeps ≥ 3:1 on white, Secondary and Accent (form borders)"
+      },
+      "500": {
+        "$value": "#6B7B87"
+      },
+      "550": {
+        "$value": "#627280",
+        "$description": "Lightest gray that keeps ≥ 4.5:1 on Secondary / sidebar"
+      },
+      "600": {
+        "$value": "#5B6B77"
+      },
+      "700": {
+        "$value": "#3D4F5C"
+      },
+      "800": {
+        "$value": "#26353F"
+      },
+      "900": {
+        "$value": "#0F1D26"
+      }
+    },
+    "teal": {
+      "$description": "Secondary accent (highlight). Use sparingly.",
+      "50": {
+        "$value": "#E0F2F1"
+      },
+      "200": {
+        "$value": "#99D5CF"
+      },
+      "600": {
+        "$value": "#0F766E"
+      },
+      "700": {
+        "$value": "#115E59"
+      }
+    },
+    "green": {
+      "100": {
+        "$value": "#DCFCE7"
+      },
+      "200": {
+        "$value": "#BBF7D0"
+      },
+      "500": {
+        "$value": "#22C55E"
+      },
+      "800": {
+        "$value": "#166534"
+      }
+    },
+    "amber": {
+      "100": {
+        "$value": "#FEF3C7"
+      },
+      "200": {
+        "$value": "#FDE68A"
+      },
+      "500": {
+        "$value": "#F59E0B"
+      },
+      "800": {
+        "$value": "#92400E"
+      }
+    },
+    "red": {
+      "100": {
+        "$value": "#FEE2E2"
+      },
+      "200": {
+        "$value": "#FECACA"
+      },
+      "500": {
+        "$value": "#EF4444"
+      },
+      "600": {
+        "$value": "#DC2626"
+      },
+      "700": {
+        "$value": "#B91C1C"
+      },
+      "800": {
+        "$value": "#991B1B"
+      }
+    },
+    "sky": {
+      "100": {
+        "$value": "#E0F2FE"
+      },
+      "200": {
+        "$value": "#BAE6FD"
+      },
+      "500": {
+        "$value": "#0EA5E9"
+      },
+      "800": {
+        "$value": "#075985"
+      }
+    },
+    "chart": {
+      "$description": "Categorical chart hues, in fixed order after slot 1 (blue.500). Taken unchanged from the validated reference palette; do not tweak by eye.",
+      "orange": {
+        "$value": "#EB6834"
+      },
+      "aqua": {
+        "$value": "#1BAF7A"
+      },
+      "yellow": {
+        "$value": "#EDA100"
+      },
+      "magenta": {
+        "$value": "#E87BA4"
+      },
+      "green": {
+        "$value": "#008300"
+      },
+      "violet": {
+        "$value": "#6250D6"
+      },
+      "red": {
+        "$value": "#E34948"
+      }
+    }
+  }
+}

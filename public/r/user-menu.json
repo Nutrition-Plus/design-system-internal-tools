@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "user-menu",
+  "title": "User menu",
+  "description": "Sidebar footer user card (shadcn sidebar-07 style) with a dropdown for role and sign out.",
+  "dependencies": [
+    "lucide-react@^1.65.0"
+  ],
+  "registryDependencies": [
+    "@moove/moove-theme",
+    "@moove/avatar",
+    "@moove/dropdown-menu",
+    "@moove/sidebar"
+  ],
+  "files": [
+    {
+      "path": "src/components/patterns/user-menu.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { BadgeCheckIcon, LogOutIcon } from \"lucide-react\"\n\nimport { Avatar, AvatarFallback } from \"@/components/ui/avatar\"\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuGroup,\n  DropdownMenuItem,\n  DropdownMenuLabel,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n} from \"@/components/ui/dropdown-menu\"\nimport {\n  SidebarMenu,\n  SidebarMenuButton,\n  SidebarMenuItem,\n} from \"@/components/ui/sidebar\"\n\nexport type UserProfile = {\n  name: string\n  email: string\n  /** Display role, e.g. \"Ops\". */\n  role: string\n}\n\ntype UserMenuProps = {\n  user: UserProfile\n  /** Called when the user picks \"ออกจากระบบ\". May be async; the item shows its busy state meanwhile. */\n  onLogout: () => void | Promise<void>\n}\n\nconst initials = (name: string) =>\n  name\n    .trim()\n    .split(/\\s+/)\n    .slice(0, 2)\n    .map((part) => part[0])\n    .join(\"\")\n    .toUpperCase()\n\nfunction UserSummary({ user }: { user: UserProfile }) {\n  return (\n    <>\n      <Avatar className=\"size-8 rounded-lg\">\n        <AvatarFallback className=\"rounded-lg\">\n          {initials(user.name)}\n        </AvatarFallback>\n      </Avatar>\n      <div className=\"grid flex-1 text-left text-sm leading-tight\">\n        <span className=\"truncate font-medium\">{user.name}</span>\n        <span className=\"truncate text-xs text-muted-foreground\">\n          {user.email}\n        </span>\n      </div>\n    </>\n  )\n}\n\n/**\n * Sidebar footer user row: a round avatar and the name on one line. Tapping it opens a dropdown to the side\n * with the email, role and sign out. Collapses to the avatar in icon mode.\n */\nfunction UserMenu({ user, onLogout }: UserMenuProps) {\n  const [signingOut, setSigningOut] = React.useState(false)\n\n  async function logout() {\n    setSigningOut(true)\n    try {\n      await onLogout()\n    } finally {\n      setSigningOut(false)\n    }\n  }\n\n  return (\n    <SidebarMenu>\n      <SidebarMenuItem>\n        <DropdownMenu>\n          <DropdownMenuTrigger asChild>\n            <SidebarMenuButton\n              tooltip={user.name}\n              className=\"data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground\"\n            >\n              <Avatar className=\"size-6 rounded-full\">\n                <AvatarFallback className=\"rounded-full text-[10px]\">\n                  {initials(user.name)}\n                </AvatarFallback>\n              </Avatar>\n              <span className=\"truncate\">{user.name}</span>\n            </SidebarMenuButton>\n          </DropdownMenuTrigger>\n          <DropdownMenuContent\n            className=\"min-w-56 rounded-lg\"\n            side=\"right\"\n            align=\"end\"\n            sideOffset={8}\n          >\n            <DropdownMenuLabel className=\"flex items-center gap-2 p-1.5 font-normal\">\n              <UserSummary user={user} />\n            </DropdownMenuLabel>\n            <DropdownMenuSeparator />\n            <DropdownMenuGroup>\n              <DropdownMenuItem disabled>\n                <BadgeCheckIcon />\n                บทบาท: {user.role}\n              </DropdownMenuItem>\n            </DropdownMenuGroup>\n            <DropdownMenuSeparator />\n            <DropdownMenuItem onSelect={logout} disabled={signingOut}>\n              <LogOutIcon />\n              {signingOut ? \"กำลังออกจากระบบ…\" : \"ออกจากระบบ\"}\n            </DropdownMenuItem>\n          </DropdownMenuContent>\n        </DropdownMenu>\n      </SidebarMenuItem>\n    </SidebarMenu>\n  )\n}\n\nexport { UserMenu }\n",
+      "type": "registry:component",
+      "target": "components/patterns/user-menu.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

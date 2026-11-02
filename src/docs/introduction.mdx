@@ -1,0 +1,24 @@
+import { Meta } from "@storybook/addon-docs/blocks"
+
+<Meta title="Introduction" />
+
+# MOOVE Design System
+
+Design System กลางสำหรับ **OMS** และ **Internal Tools** ของ MOOVE ทุกระบบใช้สี ฟอนต์ components และ patterns ชุดเดียวกัน
+ออกแบบสำหรับหน้าจอที่มีข้อมูลหนาแน่น เช่น ตารางคำสั่งซื้อและฟอร์ม และออกแบบสำหรับ iPad ก่อน (ตาม OMS ADR-009)
+
+| ส่วน | เนื้อหา |
+|-|-|
+| **Principles** | หลักการออกแบบ 6 ข้อ |
+| **Foundations** | สี (พร้อม contrast), ฟอนต์, spacing, ขนาดตาม density, radius, shadow |
+| **Components** | Button, Input, Select, Checkbox, Badge, Alert, Dialog, Tabs, Navigation, Card, Data Table |
+| **Patterns** | หน้ารายการ, หน้ารายละเอียด, ฟอร์ม, ค้นหา-กรอง-เรียง, สถานะ loading / empty / success / error |
+| **Examples** | หน้า OMS จริง 2 หน้า พร้อมคำอธิบายว่าอะไรเป็นมาตรฐานกลางและอะไรปรับได้ |
+| **Guides** | Accessibility, วิธีนำไปใช้ในระบบอื่น, การดูแลการเปลี่ยนแปลง |
+
+## ใช้งาน Storybook นี้
+
+- **Density** (แถบเครื่องมือด้านบน): สลับ `Comfortable · 44px` (iPad) กับ `Compact · 32px` (Desktop)
+- **Viewport**: มี preset iPad 1024×768, iPad Air 1180×820, Desktop 1440×900 และ Mobile 390×844
+- **Accessibility** (แผงด้านล่าง): ผลตรวจ axe ของแต่ละ story หากมี violation การทดสอบจะไม่ผ่าน
+- **Docs**: แต่ละ component มีหน้า Docs ที่บอกว่าควรใช้เมื่อไร ไม่ควรใช้เมื่อไร และข้อควรระวัง

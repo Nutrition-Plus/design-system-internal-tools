@@ -1,0 +1,45 @@
+import { Meta } from "@storybook/addon-docs/blocks"
+import { TypeScale } from "./foundations"
+
+<Meta title="Foundations/Typography" />
+
+# Typography
+
+## ฟอนต์ที่เลือก
+
+| ใช้กับ | ฟอนต์ | Token |
+|-|-|-|
+| ข้อความไทย | **IBM Plex Sans Thai** (ไม่มีหัว) | `font-sans` |
+| ข้อความอังกฤษและตัวเลข | **IBM Plex Sans** | `font-sans` (อยู่ลำดับแรก) |
+| รหัส, ID, SKU, เลขพัสดุ | **IBM Plex Mono** | `font-mono` |
+
+น้ำหนักที่ใช้: 400 / 500 / 600 (ไม่ใช้ 700 เพราะตัวไทยขนาดเล็กจะทึบ) · ฟอนต์ทั้งหมด self-host ผ่าน Fontsource ไม่ต้องพึ่ง CDN
+
+## ผลการทดสอบ (ดู Foundations/Font Comparison)
+
+เปรียบเทียบ 3 ชุดด้วยข้อความจริงที่ 12–16px และในตาราง แล้วจับภาพหน้าจอที่ iPad และ desktop:
+
+| เกณฑ์ | A. Plex ทั้งชุด | B. Noto Sans Thai + Inter + JetBrains Mono | C. Anuphan + Inter + Plex Mono |
+|-|-|-|-|
+| 0 กับ O ใน mono | ✅ 0 มีจุด, O กลม | ✅ 0 มีจุด แต่ O เหลี่ยมคล้าย 0 | ✅ (Plex Mono) |
+| 1 · l · I ใน sans | ✅ l มีหาง | ❌ Inter: I กับ l เหมือนกัน | ❌ Inter |
+| สระบน-ล่างที่ line-height 20px | ✅ ไม่ถูกตัด | ✅ | ✅ |
+| ความสูงไทย/อังกฤษ | ✅ ออกแบบเป็นชุดเดียวกัน | ✅ ใกล้เคียง | ✅ ใกล้เคียง |
+| `zero` feature (0 มีขีด) ใน sans | ❌ ไม่ทำงาน | ❌ ไม่ทำงาน | ❌ ไม่ทำงาน |
+
+**สรุป:** เลือกชุด A และตั้งกฎว่า **รหัสและ ID ต้องใช้ `font-mono` เสมอ** เพราะ feature `zero` ไม่ทำงานในฟอนต์ sans ทุกตัวที่ทดสอบ
+
+## Type scale
+
+ใช้ผ่าน utility `type-*` (เช่น `type-h1`, `type-body`, `type-table`) ซึ่งกำหนดขนาด line-height และน้ำหนักพร้อมกัน
+ข้อความไทยใช้ line-height ≥ 1.5 เพื่อไม่ให้สระและวรรณยุกต์ซ้อนถูกตัด
+
+<TypeScale />
+
+## กฎสำหรับข้อมูลหนาแน่น
+
+- ตารางใช้ `type-table`: **14/20** ในโหมด comfortable และ **13/20** ในโหมด compact · ไม่ต่ำกว่า 12px
+- ตัวเลขใช้ `tabular-nums` (ใส่ไว้ใน `Table` แล้ว) และชิดขวา
+- รหัสใช้ `font-mono` ขนาด 13px ขึ้นไป (ที่ 12px จุดใน 0 เริ่มมองยากบนจอ 1x)
+- วันที่ใช้ปี **ค.ศ.** (`th-TH-u-ca-gregory`) เพราะ `th-TH` ใช้ พ.ศ. เป็นค่าเริ่มต้น
+- ช่องกรอกใช้ 16px บนมือถือ (กันการ zoom ของ iOS) และ 14px ตั้งแต่ 768px ขึ้นไป

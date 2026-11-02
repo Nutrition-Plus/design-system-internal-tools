@@ -1,0 +1,39 @@
+import { Meta } from "@storybook/addon-docs/blocks"
+
+<Meta title="Guides/Accessibility" />
+
+# Accessibility & Responsive
+
+เป้าหมาย: **WCAG 2.2 ระดับ AA** และใช้งานได้ทั้งนิ้วบน iPad และคีย์บอร์ดบน desktop
+
+## สิ่งที่ design system ทำให้แล้ว
+
+| เรื่อง | วิธี |
+|-|-|
+| Contrast | ทุกคู่สีที่ใช้จริงอยู่ใน `tokens/contrast.json` และ `bun test` ตรวจทุกครั้ง (ตัวอักษร ≥ 4.5:1, ขอบและไอคอน ≥ 3:1) |
+| Focus | `:focus-visible` เส้น 2px สี Primary เว้น 2px บนทุกการกระทำ · ช่องกรอกเปลี่ยนขอบเป็น Primary |
+| พื้นที่แตะ | โหมด comfortable: control 44px · ปุ่ม `sm` และ checkbox ขยายพื้นที่แตะเป็น 44px · รายการในเมนู ≥ 44px |
+| คีย์บอร์ด | Radix: Dialog กัก focus และคืน focus, Esc ปิด, Tabs ใช้ลูกศร, Select/Menu ใช้ลูกศรและพิมพ์ค้นหา |
+| ตาราง | `<table>` จริง + `<caption>` (sr-only) + `aria-sort` + `aria-busy` ระหว่างโหลด |
+| ฟอร์ม | `aria-invalid`, `aria-describedby` ไปยังข้อความ error, สรุปข้อผิดพลาดที่รับ focus |
+| การเคลื่อนไหว | `prefers-reduced-motion` ปิด animation |
+| ภาษา | `<html lang="th">` เพื่อให้ screen reader อ่านไทยถูก |
+| ตรวจอัตโนมัติ | Storybook a11y addon (axe) ทุก story · มี violation แล้ว `bun run test:stories` ไม่ผ่าน |
+
+## สิ่งที่แต่ละทีมต้องทำเอง
+
+- ปุ่มไอคอนต้องมี `aria-label` · รูปที่สื่อความหมายต้องมี `alt`
+- ใช้ข้อความประกอบสีเสมอ (ป้ายสถานะ, ตัวเลขบวก/ลบ)
+- ข้อความ error บอกวิธีแก้ ไม่ใช่รหัสหรือข้อความเทคนิค
+- ทดสอบ Tab ผ่านหน้าจอจริงอย่างน้อย 1 รอบก่อนส่งงาน: ลำดับถูก, มองเห็น focus, ไม่มีจุดที่ focus ติด
+- ไม่ใช้ double-click หรือการกระทำที่เห็นเฉพาะตอน hover (ใช้บน iPad ไม่ได้)
+
+## Responsive
+
+| ความกว้าง | สิ่งที่เปลี่ยน |
+|-|-|
+| < 768px | Sidebar เป็น Sheet · ตารางเป็นรายการการ์ด · ช่องกรอกใช้ 16px (กัน iOS zoom) · ฟอร์ม 1 คอลัมน์ |
+| 768–1279px (iPad) | Sidebar เป็นแถบไอคอน · ตารางเลื่อนแนวนอนได้ · ฟอร์ม 2 คอลัมน์ |
+| ≥ 1280px | Sidebar เปิดเต็ม · แนะนำโหมด compact สำหรับ Internal Tools บน desktop |
+
+ทดสอบด้วย viewport ใน Storybook: iPad 1024×768, iPad Air 1180×820, Desktop 1440×900, Mobile 390×844

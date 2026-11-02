@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "page-header",
+  "title": "Page header",
+  "description": "Page title, description, meta badges and actions.",
+  "dependencies": [
+    "cn@^0.5.1"
+  ],
+  "registryDependencies": [
+    "@moove/moove-theme"
+  ],
+  "files": [
+    {
+      "path": "src/components/patterns/page-header.tsx",
+      "content": "import * as React from \"react\"\nimport { cn } from \"cn\"\n\ntype PageHeaderProps = {\n  title: React.ReactNode\n  description?: React.ReactNode\n  /** Badges next to the title (e.g. status). */\n  meta?: React.ReactNode\n  /** One primary action at most; others secondary or outline. */\n  actions?: React.ReactNode\n  className?: string\n}\n\nfunction PageHeader({ title, description, meta, actions, className }: PageHeaderProps) {\n  return (\n    <header data-slot=\"page-header\" className={cn(\"flex flex-wrap items-start justify-between gap-4\", className)}>\n      <div className=\"flex min-w-0 flex-col gap-1\">\n        <div className=\"flex flex-wrap items-center gap-2\">\n          <h1 className=\"type-h1 text-foreground\">{title}</h1>\n          {meta}\n        </div>\n        {description && <p className=\"text-sm text-muted-foreground\">{description}</p>}\n      </div>\n      {actions && <div className=\"flex flex-wrap items-center gap-2\">{actions}</div>}\n    </header>\n  )\n}\n\nexport { PageHeader }\n",
+      "type": "registry:component",
+      "target": "components/patterns/page-header.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "./styles/fonts.css";
+/* Generated from tokens/*.json: colors, fonts, radius, shadows, density, type-* utilities. */
+@import "./styles/tokens.css";
+/* Alternate chart color orders (data-chart-theme). */
+@import "./styles/chart-themes.css";
+/* Base element styles, focus ring and touch targets. */
+@import "./styles/base.css";
+
+@custom-variant dark (&:is(.dark *));

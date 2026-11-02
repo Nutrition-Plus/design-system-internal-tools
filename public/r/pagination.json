@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pagination",
+  "title": "Pagination",
+  "description": "MOOVE-styled pagination (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+  "dependencies": [
+    "cn@^0.5.1",
+    "lucide-react@^1.65.0"
+  ],
+  "registryDependencies": [
+    "@moove/moove-theme",
+    "@moove/button"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/pagination.tsx",
+      "content": "import * as React from \"react\"\nimport { cn } from \"cn\"\n\nimport { Button } from \"@/components/ui/button\"\nimport {\n  ChevronLeftIcon,\n  ChevronRightIcon,\n  MoreHorizontalIcon,\n} from \"lucide-react\"\n\nfunction Pagination({ className, ...props }: React.ComponentProps<\"nav\">) {\n  return (\n    <nav\n      role=\"navigation\"\n      aria-label=\"แบ่งหน้า\"\n      data-slot=\"pagination\"\n      className={cn(\"mx-auto flex w-full justify-center\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction PaginationContent({\n  className,\n  ...props\n}: React.ComponentProps<\"ul\">) {\n  return (\n    <ul\n      data-slot=\"pagination-content\"\n      className={cn(\"flex items-center gap-0.5\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction PaginationItem({ ...props }: React.ComponentProps<\"li\">) {\n  return <li data-slot=\"pagination-item\" {...props} />\n}\n\ntype PaginationLinkProps = {\n  isActive?: boolean\n} & Pick<React.ComponentProps<typeof Button>, \"size\"> &\n  React.ComponentProps<\"a\">\n\nfunction PaginationLink({\n  className,\n  isActive,\n  size = \"icon\",\n  ...props\n}: PaginationLinkProps) {\n  return (\n    <Button\n      asChild\n      variant={isActive ? \"outline\" : \"ghost\"}\n      size={size}\n      className={cn(className)}\n    >\n      <a\n        aria-current={isActive ? \"page\" : undefined}\n        data-slot=\"pagination-link\"\n        data-active={isActive}\n        {...props}\n      />\n    </Button>\n  )\n}\n\nfunction PaginationPrevious({\n  className,\n  text = \"ก่อนหน้า\",\n  ...props\n}: React.ComponentProps<typeof PaginationLink> & { text?: string }) {\n  return (\n    <PaginationLink\n      size=\"default\"\n      className={cn(\"pl-1.5!\", className)}\n      {...props}\n    >\n      <ChevronLeftIcon data-icon=\"inline-start\" />\n      <span>{text}</span>\n    </PaginationLink>\n  )\n}\n\nfunction PaginationNext({\n  className,\n  text = \"ถัดไป\",\n  ...props\n}: React.ComponentProps<typeof PaginationLink> & { text?: string }) {\n  return (\n    <PaginationLink\n      size=\"default\"\n      className={cn(\"pr-1.5!\", className)}\n      {...props}\n    >\n      <span>{text}</span>\n      <ChevronRightIcon data-icon=\"inline-end\" />\n    </PaginationLink>\n  )\n}\n\nfunction PaginationEllipsis({\n  className,\n  ...props\n}: React.ComponentProps<\"span\">) {\n  return (\n    <span\n      aria-hidden\n      data-slot=\"pagination-ellipsis\"\n      className={cn(\n        \"flex size-control items-center justify-center [&_svg:not([class*='size-'])]:size-4\",\n        className\n      )}\n      {...props}\n    >\n      <MoreHorizontalIcon />\n      <span className=\"sr-only\">หน้าอื่น ๆ</span>\n    </span>\n  )\n}\n\nexport {\n  Pagination,\n  PaginationContent,\n  PaginationEllipsis,\n  PaginationItem,\n  PaginationLink,\n  PaginationNext,\n  PaginationPrevious,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

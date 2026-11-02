@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-mobile",
+  "title": "use-mobile",
+  "description": "Hook use-mobile",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "src/hooks/use-mobile.ts",
+      "content": "import * as React from \"react\"\n\nconst MOBILE_BREAKPOINT = 768\nconst QUERY = `(max-width: ${MOBILE_BREAKPOINT - 1}px)`\n\n// MOOVE: useSyncExternalStore instead of setState-in-effect (react-hooks v7 lint rule).\nfunction subscribe(onChange: () => void) {\n  const mql = window.matchMedia(QUERY)\n  mql.addEventListener(\"change\", onChange)\n  return () => mql.removeEventListener(\"change\", onChange)\n}\n\nexport function useIsMobile() {\n  return React.useSyncExternalStore(\n    subscribe,\n    () => window.matchMedia(QUERY).matches,\n    () => false\n  )\n}\n",
+      "type": "registry:hook"
+    }
+  ],
+  "type": "registry:hook"
+}

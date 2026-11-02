@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chart-card",
+  "title": "Chart card",
+  "description": "Card around a chart with a table-view twin. Use with the chart component and the --chart-1…8 tokens.",
+  "dependencies": [
+    "lucide-react@^1.65.0"
+  ],
+  "registryDependencies": [
+    "@moove/moove-theme",
+    "@moove/button",
+    "@moove/card",
+    "@moove/table"
+  ],
+  "files": [
+    {
+      "path": "src/components/patterns/chart-card.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { ChartNoAxesColumnIcon, TableIcon } from \"lucide-react\"\n\nimport { Button } from \"@/components/ui/button\"\nimport {\n  Card,\n  CardContent,\n  CardDescription,\n  CardHeader,\n  CardTitle,\n} from \"@/components/ui/card\"\nimport {\n  Table,\n  TableBody,\n  TableCell,\n  TableHead,\n  TableHeader,\n  TableRow,\n} from \"@/components/ui/table\"\n\nexport type ChartTableColumn = { key: string; label: string }\n\ntype ChartCardProps = {\n  title: string\n  /** One line saying what is plotted and for which period. */\n  description?: string\n  /** Data twin of the chart: every value is readable here, so nothing depends on color or hover. */\n  table: {\n    rowKey: string\n    rowLabel: string\n    columns: ChartTableColumn[]\n    rows: Record<string, string | number>[]\n  }\n  children: React.ReactNode\n}\n\n/**\n * Card around a chart with a toggle to the same data as a table. Tooltips and colors only enhance:\n * the table is the accessible equivalent and the relief for series colors under 3:1 on white.\n */\nfunction ChartCard({ title, description, table, children }: ChartCardProps) {\n  const [asTable, setAsTable] = React.useState(false)\n  const id = React.useId()\n\n  return (\n    <Card data-slot=\"chart-card\">\n      <CardHeader>\n        <CardTitle>{title}</CardTitle>\n        {description && <CardDescription>{description}</CardDescription>}\n        <div className=\"col-start-2 row-span-2 row-start-1 self-start justify-self-end\">\n          <Button\n            variant=\"ghost\"\n            size=\"sm\"\n            aria-pressed={asTable}\n            aria-controls={id}\n            onClick={() => setAsTable((v) => !v)}\n          >\n            {asTable ? (\n              <ChartNoAxesColumnIcon data-icon=\"inline-start\" />\n            ) : (\n              <TableIcon data-icon=\"inline-start\" />\n            )}\n            {asTable ? \"ดูกราฟ\" : \"ดูเป็นตาราง\"}\n          </Button>\n        </div>\n      </CardHeader>\n      <CardContent id={id}>\n        {asTable ? (\n          <Table>\n            <caption className=\"sr-only\">{title}</caption>\n            <TableHeader>\n              <TableRow>\n                <TableHead>{table.rowLabel}</TableHead>\n                {table.columns.map((c) => (\n                  <TableHead key={c.key} className=\"text-right\">\n                    {c.label}\n                  </TableHead>\n                ))}\n              </TableRow>\n            </TableHeader>\n            <TableBody>\n              {table.rows.map((row) => (\n                <TableRow key={String(row[table.rowKey])}>\n                  <TableCell>{row[table.rowKey]}</TableCell>\n                  {table.columns.map((c) => (\n                    <TableCell key={c.key} className=\"text-right\">\n                      {typeof row[c.key] === \"number\"\n                        ? (row[c.key] as number).toLocaleString(\"th-TH\")\n                        : row[c.key]}\n                    </TableCell>\n                  ))}\n                </TableRow>\n              ))}\n            </TableBody>\n          </Table>\n        ) : (\n          children\n        )}\n      </CardContent>\n    </Card>\n  )\n}\n\nexport { ChartCard }\n",
+      "type": "registry:component",
+      "target": "components/patterns/chart-card.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

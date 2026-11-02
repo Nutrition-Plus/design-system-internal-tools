@@ -1,0 +1,36 @@
+/*
+ * Chart color themes. Set once per app (or section) with <html data-chart-theme="violet">; every chart
+ * below it follows. The default theme lives in tokens.css (--chart-1 … --chart-8, blue first).
+ *
+ * Each order below keeps the 8 validated hues and only changes their order, which is what makes a
+ * palette color-blind safe. Validated with validate_palette.js (light, surface #FFFFFF, adjacent pairs):
+ *
+ *   default  blue   → worst adjacent CVD ΔE 9.1, normal-vision ΔE 19.6
+ *   violet   violet → worst adjacent CVD ΔE 9.2, normal-vision ΔE 20.8
+ *   orange   orange → worst adjacent CVD ΔE 9.2, normal-vision ΔE 15.0 (exactly at the 15 floor)
+ *
+ * Do not edit hues or reorder by eye. To add a theme, run the validator on the candidate order first.
+ * Red and green are never slot 1: they are reserved for danger / success status.
+ * Light mode only; dark-mode orders need their own validation against the dark surface.
+ */
+[data-chart-theme="violet"] {
+  --chart-1: var(--palette-chart-violet);
+  --chart-2: var(--palette-chart-magenta);
+  --chart-3: var(--palette-chart-green);
+  --chart-4: var(--palette-chart-yellow);
+  --chart-5: var(--palette-chart-red);
+  --chart-6: var(--palette-blue-500);
+  --chart-7: var(--palette-chart-aqua);
+  --chart-8: var(--palette-chart-orange);
+}
+
+[data-chart-theme="orange"] {
+  --chart-1: var(--palette-chart-orange);
+  --chart-2: var(--palette-chart-aqua);
+  --chart-3: var(--palette-chart-green);
+  --chart-4: var(--palette-chart-yellow);
+  --chart-5: var(--palette-chart-magenta);
+  --chart-6: var(--palette-blue-500);
+  --chart-7: var(--palette-chart-violet);
+  --chart-8: var(--palette-chart-red);
+}

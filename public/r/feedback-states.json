@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "feedback-states",
+  "title": "Feedback states",
+  "description": "EmptyState (no-data / no-results) and ErrorState with retry.",
+  "dependencies": [
+    "lucide-react@^1.65.0"
+  ],
+  "registryDependencies": [
+    "@moove/moove-theme",
+    "@moove/button",
+    "@moove/empty"
+  ],
+  "files": [
+    {
+      "path": "src/components/patterns/feedback-states.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { InboxIcon, RefreshCwIcon, SearchXIcon, ServerCrashIcon } from \"lucide-react\"\n\nimport { Button } from \"@/components/ui/button\"\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from \"@/components/ui/empty\"\n\ntype EmptyStateProps = {\n  /**\n   * no-data: nothing exists yet (offer the create action).\n   * no-results: data exists but filters hide it (offer \"clear filters\").\n   */\n  kind: \"no-data\" | \"no-results\"\n  title?: string\n  description?: string\n  action?: React.ReactNode\n}\n\nfunction EmptyState({ kind, title, description, action }: EmptyStateProps) {\n  const Icon = kind === \"no-data\" ? InboxIcon : SearchXIcon\n  return (\n    <Empty data-kind={kind} className=\"py-12\">\n      <EmptyHeader>\n        <EmptyMedia variant=\"icon\">\n          <Icon />\n        </EmptyMedia>\n        <EmptyTitle>{title ?? (kind === \"no-data\" ? \"ยังไม่มีข้อมูล\" : \"ไม่พบรายการที่ตรงกับตัวกรอง\")}</EmptyTitle>\n        <EmptyDescription>\n          {description ??\n            (kind === \"no-data\"\n              ? \"เมื่อมีข้อมูลเข้ามา รายการจะแสดงที่นี่\"\n              : \"ลองเปลี่ยนคำค้นหาหรือล้างตัวกรองเพื่อดูรายการทั้งหมด\")}\n        </EmptyDescription>\n      </EmptyHeader>\n      {action && <EmptyContent>{action}</EmptyContent>}\n    </Empty>\n  )\n}\n\ntype ErrorStateProps = {\n  title?: string\n  description?: string\n  /** Shown to support staff; e.g. a request id. Never show stack traces. */\n  reference?: string\n  onRetry?: () => void\n  retrying?: boolean\n}\n\nfunction ErrorState({ title, description, reference, onRetry, retrying }: ErrorStateProps) {\n  return (\n    <Empty role=\"alert\" className=\"py-12\">\n      <EmptyHeader>\n        <EmptyMedia variant=\"icon\" className=\"bg-danger-subtle text-danger-foreground\">\n          <ServerCrashIcon />\n        </EmptyMedia>\n        <EmptyTitle>{title ?? \"โหลดข้อมูลไม่สำเร็จ\"}</EmptyTitle>\n        <EmptyDescription>\n          {description ?? \"เกิดข้อผิดพลาดระหว่างดึงข้อมูล ข้อมูลของคุณไม่ได้รับผลกระทบ ลองใหม่อีกครั้ง\"}\n          {reference && (\n            <>\n              <br />\n              <span className=\"font-mono text-xs\">รหัสอ้างอิง {reference}</span>\n            </>\n          )}\n        </EmptyDescription>\n      </EmptyHeader>\n      {onRetry && (\n        <EmptyContent>\n          <Button variant=\"outline\" onClick={onRetry} disabled={retrying} aria-busy={retrying}>\n            <RefreshCwIcon data-icon=\"inline-start\" className={retrying ? \"animate-spin\" : undefined} />\n            ลองใหม่\n          </Button>\n        </EmptyContent>\n      )}\n    </Empty>\n  )\n}\n\nexport { EmptyState, ErrorState }\n",
+      "type": "registry:component",
+      "target": "components/patterns/feedback-states.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

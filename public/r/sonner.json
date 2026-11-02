@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sonner",
+  "title": "Sonner",
+  "description": "MOOVE-styled sonner (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+  "dependencies": [
+    "lucide-react@^1.65.0",
+    "sonner@^2.0.8"
+  ],
+  "registryDependencies": [
+    "@moove/moove-theme"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/sonner.tsx",
+      "content": "\"use client\"\n\nimport { Toaster as Sonner, type ToasterProps } from \"sonner\"\nimport {\n  CircleCheckIcon,\n  InfoIcon,\n  TriangleAlertIcon,\n  OctagonXIcon,\n  Loader2Icon,\n} from \"lucide-react\"\n\nconst Toaster = ({ ...props }: ToasterProps) => {\n  return (\n    <Sonner\n      theme=\"light\"\n      richColors\n      className=\"toaster group\"\n      icons={{\n        success: <CircleCheckIcon className=\"size-4\" />,\n        info: <InfoIcon className=\"size-4\" />,\n        warning: <TriangleAlertIcon className=\"size-4\" />,\n        error: <OctagonXIcon className=\"size-4\" />,\n        loading: <Loader2Icon className=\"size-4 animate-spin\" />,\n      }}\n      style={\n        {\n          \"--normal-bg\": \"var(--popover)\",\n          \"--normal-text\": \"var(--popover-foreground)\",\n          \"--normal-border\": \"var(--border)\",\n          \"--border-radius\": \"var(--radius-2xl)\",\n          \"--success-bg\": \"var(--success-subtle)\",\n          \"--success-text\": \"var(--success-foreground)\",\n          \"--success-border\": \"var(--success-border)\",\n          \"--error-bg\": \"var(--danger-subtle)\",\n          \"--error-text\": \"var(--danger-foreground)\",\n          \"--error-border\": \"var(--danger-border)\",\n          \"--warning-bg\": \"var(--warning-subtle)\",\n          \"--warning-text\": \"var(--warning-foreground)\",\n          \"--warning-border\": \"var(--warning-border)\",\n          \"--info-bg\": \"var(--info-subtle)\",\n          \"--info-text\": \"var(--info-foreground)\",\n          \"--info-border\": \"var(--info-border)\",\n        } as React.CSSProperties\n      }\n      toastOptions={{\n        classNames: {\n          toast: \"cn-toast\",\n        },\n      }}\n      {...props}\n    />\n  )\n}\n\nexport { Toaster }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

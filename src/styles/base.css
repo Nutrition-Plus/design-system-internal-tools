@@ -1,0 +1,73 @@
+/* MOOVE base styles. Shipped with the moove-theme registry item. */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-background type-body text-foreground antialiased;
+  }
+  code,
+  kbd,
+  samp {
+    @apply font-mono;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/*
+ * Focus: a solid 2px ring with a 2px white offset on every action, visible on
+ * white, Secondary and Accent surfaces. Unlayered so it beats `outline-none`.
+ * Field controls keep their own border + ring treatment.
+ */
+:is(
+    button,
+    a[href],
+    [role="button"],
+    [role="tab"],
+    [role="checkbox"],
+    [role="radio"],
+    [role="switch"],
+    [role="menuitem"],
+    [role="option"],
+    summary
+  ):focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  --tw-ring-shadow: 0 0 #0000;
+}
+
+/*
+ * Touch target: in comfortable density, controls shorter than 44px get an
+ * invisible hit area of at least --hit-min (44px). Compact sets it to 0.
+ */
+[data-slot="button"][data-size="sm"],
+[data-slot="button"][data-size="xs"],
+[data-slot="button"][data-size="icon-sm"],
+[data-slot="button"][data-size="icon-xs"] {
+  position: relative;
+}
+[data-slot="button"][data-size="sm"]::after,
+[data-slot="button"][data-size="xs"]::after,
+[data-slot="button"][data-size="icon-sm"]::after,
+[data-slot="button"][data-size="icon-xs"]::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, var(--hit-min));
+  height: max(100%, var(--hit-min));
+  transform: translate(-50%, -50%);
+}

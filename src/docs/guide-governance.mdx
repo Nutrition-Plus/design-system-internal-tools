@@ -1,0 +1,45 @@
+import { Meta } from "@storybook/addon-docs/blocks"
+
+<Meta title="Guides/Governance" />
+
+# การดูแลการเปลี่ยนแปลง
+
+## เวอร์ชัน (Semantic Versioning)
+
+| ระดับ | เมื่อ | ตัวอย่าง |
+|-|-|-|
+| **Major** (x.0.0) | เปลี่ยนชื่อหรือความหมายของ token, ลบ variant, เปลี่ยน props ที่ทำให้โค้ดเดิมพัง | เปลี่ยน `--primary` เป็นสีอื่น, ลบ `Badge variant="info"` |
+| **Minor** (0.x.0) | เพิ่ม token, component, variant หรือ pattern ใหม่ | เพิ่ม DateRangePicker |
+| **Patch** (0.0.x) | แก้ bug, ปรับ a11y, ปรับสีโดยความหมายเดิม | แก้ focus ring ใน Select |
+
+- Token ที่เลิกใช้คงไว้เป็น alias **อย่างน้อย 1 minor** พร้อมหมายเหตุใน CHANGELOG
+- บันทึกทุกการเปลี่ยนใน `CHANGELOG.md` แยกหัวข้อ Added / Changed / Deprecated / Fixed
+
+## ขั้นตอนการเสนอเปลี่ยน
+
+1. **เปิด issue** อธิบายปัญหา หน้าจอที่ใช้ และทำไม component เดิมไม่พอ
+2. **ตรวจว่ามีอยู่แล้วไหม**: ค้นใน Storybook และ `bunx --bun shadcn@latest search @shadcn -q "<ชื่อ>"`
+3. **PR** ต้องมี
+   - story ที่ครอบคลุม default, hover/focus, disabled, loading, error และทั้งสอง density
+   - คำอธิบายในหน้า Docs: ใช้เมื่อ / ไม่ควรใช้ / ข้อควรระวัง
+   - ถ้าแก้สี: เพิ่มคู่สีใน `tokens/contrast.json` และ `bun test` ผ่าน
+   - บันทึกใน CHANGELOG
+4. **รีวิว** โดยผู้ออกแบบ 1 คน + frontend 1 คน
+5. **ปล่อยเวอร์ชัน**: `bun run registry:build` แล้วแจ้งทีมที่ใช้งานพร้อมรายการที่ต้อง merge
+
+## ตรวจก่อน merge (CI)
+
+```bash
+bun run tokens && git diff --exit-code   # tokens ที่ generate ตรงกับ JSON
+bun test                                  # contrast + tokens
+bun run typecheck && bun run lint
+bun run test:stories                      # render + play + a11y ของทุก story
+bun run build-storybook
+bun run registry:build
+```
+
+## แก้ component ที่มาจาก shadcn
+
+ไฟล์ใน `src/components/ui/` มาจาก shadcn แล้วปรับแล้ว การ `shadcn add` ซ้ำจะทับการปรับ
+ให้ใช้ `--dry-run` และ `--diff` ดูการเปลี่ยนจากต้นทางแล้ว merge ด้วยมือ ห้ามใช้ `--overwrite` กับไฟล์ที่ปรับแล้ว
+การปรับแต่ละไฟล์มีหมายเหตุ `// MOOVE:` ที่ต้นไฟล์ (สำหรับไฟล์ที่ปรับมาก)

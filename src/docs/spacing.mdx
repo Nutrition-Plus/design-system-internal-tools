@@ -1,0 +1,32 @@
+import { Meta } from "@storybook/addon-docs/blocks"
+import { DensityTable, SpacingScale } from "./foundations"
+
+<Meta title="Foundations/Spacing & Size" />
+
+# Spacing & Size
+
+## Spacing (ฐาน 4px)
+
+ตรงกับ Tailwind ทุกค่า (`p-1` = 4px, `gap-3` = 12px) ใช้ `gap-*` ใน flex/grid แทน `space-x-*` / `space-y-*`
+
+<SpacingScale />
+
+## Density
+
+ตั้งค่าครั้งเดียวต่อระบบด้วย `<html data-density="comfortable">` หรือ `"compact"` component ทุกตัวจะปรับขนาดตาม
+
+- **Comfortable (ค่าเริ่มต้น)**: สำหรับ OMS และระบบที่ใช้บน iPad · ปุ่มและช่องกรอกสูง 44px ตาม OMS ADR-009
+- **Compact**: สำหรับ Internal Tools ที่ใช้บน desktop เป็นหลัก · เห็นแถวในตารางมากขึ้นประมาณ 30%
+
+<DensityTable />
+
+ใช้ผ่าน Tailwind: `h-control`, `h-control-sm`, `h-control-lg`, `size-control`, `h-row`, `h-row-head`, `p-(--page-gutter)`
+
+## Breakpoints
+
+| ชื่อ | ความกว้าง | Layout |
+|-|-|-|
+| (ฐาน) | < 768px | sidebar เป็น Sheet · ตารางเปลี่ยนเป็นรายการการ์ด |
+| `md` | ≥ 768px | iPad แนวตั้ง · ตารางเลื่อนแนวนอนได้ |
+| `lg` | ≥ 1024px | iPad แนวนอน · sidebar เริ่มเป็นแถบไอคอน |
+| `xl` | ≥ 1280px | Desktop · sidebar เปิดเต็ม |

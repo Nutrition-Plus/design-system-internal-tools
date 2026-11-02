@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "confirm-dialog",
+  "title": "Confirm dialog",
+  "description": "Confirmation for hard-to-undo actions; async confirm with spinner, focus starts on Cancel.",
+  "dependencies": [],
+  "registryDependencies": [
+    "@moove/moove-theme",
+    "@moove/alert-dialog",
+    "@moove/button",
+    "@moove/spinner"
+  ],
+  "files": [
+    {
+      "path": "src/components/patterns/confirm-dialog.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport {\n  AlertDialog,\n  AlertDialogAction,\n  AlertDialogCancel,\n  AlertDialogContent,\n  AlertDialogDescription,\n  AlertDialogFooter,\n  AlertDialogHeader,\n  AlertDialogTitle,\n  AlertDialogTrigger,\n} from \"@/components/ui/alert-dialog\"\nimport { Button } from \"@/components/ui/button\"\nimport { Spinner } from \"@/components/ui/spinner\"\n\ntype ConfirmDialogProps = {\n  trigger: React.ReactNode\n  title: string\n  description: React.ReactNode\n  confirmLabel: string\n  cancelLabel?: string\n  /** destructive for actions that delete or cannot be undone. */\n  tone?: \"default\" | \"destructive\"\n  /** May return a promise; the dialog stays open with a spinner until it settles, and stays open on failure. */\n  onConfirm: () => void | Promise<void>\n}\n\n/**\n * Use for hard-to-undo actions (cancel booking, delete, mark shipped).\n * Focus starts on Cancel, so pressing Enter by accident is safe.\n */\nfunction ConfirmDialog({\n  trigger,\n  title,\n  description,\n  confirmLabel,\n  cancelLabel = \"ยกเลิก\",\n  tone = \"default\",\n  onConfirm,\n}: ConfirmDialogProps) {\n  const [open, setOpen] = React.useState(false)\n  const [pending, setPending] = React.useState(false)\n\n  async function confirm(event: React.MouseEvent) {\n    event.preventDefault()\n    setPending(true)\n    try {\n      await onConfirm()\n      setOpen(false)\n    } catch {\n      // Keep the dialog open so the user can retry; the caller shows the error toast.\n    } finally {\n      setPending(false)\n    }\n  }\n\n  return (\n    <AlertDialog open={open} onOpenChange={(next) => !pending && setOpen(next)}>\n      <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>\n      <AlertDialogContent>\n        <AlertDialogHeader>\n          <AlertDialogTitle>{title}</AlertDialogTitle>\n          <AlertDialogDescription>{description}</AlertDialogDescription>\n        </AlertDialogHeader>\n        <AlertDialogFooter>\n          <AlertDialogCancel asChild>\n            <Button variant=\"outline\" disabled={pending} autoFocus>\n              {cancelLabel}\n            </Button>\n          </AlertDialogCancel>\n          <AlertDialogAction asChild>\n            <Button\n              variant={tone === \"destructive\" ? \"destructive\" : \"default\"}\n              onClick={confirm}\n              disabled={pending}\n              aria-busy={pending}\n            >\n              {pending && <Spinner data-icon=\"inline-start\" />}\n              {confirmLabel}\n            </Button>\n          </AlertDialogAction>\n        </AlertDialogFooter>\n      </AlertDialogContent>\n    </AlertDialog>\n  )\n}\n\nexport { ConfirmDialog }\n",
+      "type": "registry:component",
+      "target": "components/patterns/confirm-dialog.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

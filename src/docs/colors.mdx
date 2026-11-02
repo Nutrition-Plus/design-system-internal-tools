@@ -1,0 +1,50 @@
+import { Meta } from "@storybook/addon-docs/blocks"
+import { ContrastTable, Palette, SemanticColors } from "./foundations"
+
+<Meta title="Foundations/Colors" />
+
+# Colors
+
+## สัดส่วนการใช้สี
+
+<div className="my-4 flex h-10 overflow-hidden rounded-lg border border-border text-xs font-medium">
+  <div className="flex flex-[6] items-center justify-center bg-background">ขาว ~60%</div>
+  <div className="flex flex-[3] items-center justify-center bg-secondary">Secondary ~30%</div>
+  <div className="flex flex-[0.7] items-center justify-center bg-primary text-primary-foreground">Primary</div>
+  <div className="flex flex-[0.3] items-center justify-center bg-warning" />
+</div>
+
+- **Primary #045275**: ปุ่มหลัก ลิงก์ ส่วนที่เลือก และ focus ring
+- **Secondary #F3F7FA**: พื้นหลังรอง sidebar หัวตาราง และพื้นที่จัดกลุ่มข้อมูล
+- **Surface #FFFFFF**: พื้นของเนื้อหา การ์ด และตาราง
+- **Accent #E6F0F5** (สีที่เสนอเพิ่ม, สร้างจาก Primary): แถวหรือเมนูที่ถูกเลือก และพื้นตอน hover
+- **Highlight #0F766E** (Accent รอง): ป้ายพิเศษ เช่น “มีโน้ต” ใช้น้อยมาก
+
+## กฎสีสถานะ (สำคัญ)
+
+สีสถานะหลัก **#22C55E, #F59E0B, #EF4444, #0EA5E9** มี contrast บนพื้นขาวเพียง 2.15–3.76:1
+จึง **ห้ามใช้เป็นสีตัวอักษร** และ **ห้ามใช้เป็นพื้นของตัวอักษรสีขาว** ให้ใช้กับ dot, ไอคอนประกอบ และแถบซ้ายของ Alert เท่านั้น
+ตัวอักษรให้ใช้คู่ `*-foreground` บน `*-subtle` ที่กำหนดไว้ (6.37–6.80:1)
+ปุ่มลบใช้ `destructive` #DC2626 (ตัวอักษรขาว 4.83:1) แทน #EF4444
+
+## Semantic tokens
+
+ใช้ผ่าน Tailwind เช่น `bg-primary`, `text-muted-foreground`, `border-input`, `bg-success-subtle text-success-foreground`
+ห้ามใช้ค่า hex หรือ palette โดยตรงใน component
+
+<SemanticColors />
+
+## Contrast ของคู่สีที่ใช้งานจริง
+
+ตรวจอัตโนมัติด้วย `bun test` ทุกครั้งที่แก้ tokens (WCAG 2.2 AA: ตัวอักษร ≥ 4.5:1, ขอบหรือไอคอนที่สื่อความหมาย ≥ 3:1)
+แถวที่ขึ้น “ห้ามใช้” คือคู่สีที่ตรวจแล้วว่าไม่ผ่าน และบันทึกไว้เพื่อเตือน
+
+<ContrastTable />
+
+> **การตัดสินใจระหว่างทำ:** เดิมเสนอขอบช่องกรอก #8695A1 แต่ contrast บนพื้น Secondary ได้เพียง 2.86:1 จึงปรับเป็น **#7A8995** ซึ่งผ่าน ≥ 3:1 บนพื้นขาว, Secondary และ Accent
+
+## Palette (primitive)
+
+ใช้สร้าง semantic tokens เท่านั้น
+
+<Palette />

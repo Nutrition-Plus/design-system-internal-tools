@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress",
+  "title": "Progress",
+  "description": "MOOVE-styled progress (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+  "dependencies": [
+    "cn@^0.5.1",
+    "radix-ui@^1.8.1"
+  ],
+  "registryDependencies": [
+    "@moove/moove-theme"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/progress.tsx",
+      "content": "import * as React from \"react\"\nimport { cn } from \"cn\"\nimport { Progress as ProgressPrimitive } from \"radix-ui\"\n\n// MOOVE: 8px bar on a visible track. Tone colors the bar only (never text). Always give it an aria-label.\nconst TONES = {\n  default: \"bg-primary\",\n  success: \"bg-success\",\n  warning: \"bg-warning\",\n  danger: \"bg-danger\",\n} as const\n\nfunction Progress({\n  className,\n  value,\n  tone = \"default\",\n  ...props\n}: React.ComponentProps<typeof ProgressPrimitive.Root> & {\n  tone?: keyof typeof TONES\n}) {\n  return (\n    <ProgressPrimitive.Root\n      data-slot=\"progress\"\n      value={value}\n      className={cn(\n        \"relative flex h-2 w-full items-center overflow-hidden rounded-full bg-border\",\n        className\n      )}\n      {...props}\n    >\n      <ProgressPrimitive.Indicator\n        data-slot=\"progress-indicator\"\n        className={cn(\n          \"size-full flex-1 transition-transform duration-300 motion-reduce:transition-none\",\n          TONES[tone]\n        )}\n        style={{ transform: `translateX(-${100 - (value || 0)}%)` }}\n      />\n    </ProgressPrimitive.Root>\n  )\n}\n\nexport { Progress }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

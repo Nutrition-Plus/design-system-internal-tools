@@ -1,0 +1,82 @@
+{
+  "spacing": {
+    "$type": "dimension",
+    "$description": "4px base. Maps 1:1 to Tailwind spacing (p-1 = 4px, gap-3 = 12px). Documented here; Tailwind already provides the utilities.",
+    "0": { "$value": "0px" },
+    "0.5": { "$value": "2px" },
+    "1": { "$value": "4px" },
+    "1.5": { "$value": "6px" },
+    "2": { "$value": "8px" },
+    "3": { "$value": "12px", "$description": "Gap inside controls and between fields in a row" },
+    "4": { "$value": "16px", "$description": "Gap between fields, card padding (compact)" },
+    "5": { "$value": "20px" },
+    "6": { "$value": "24px", "$description": "Card padding, page gutter" },
+    "8": { "$value": "32px", "$description": "Gap between page sections" },
+    "10": { "$value": "40px" },
+    "12": { "$value": "48px" },
+    "16": { "$value": "64px" }
+  },
+  "radius": {
+    "$type": "dimension",
+    "$description": "Smaller than shadcn default to suit data-heavy screens. Each step is pinned to the Tailwind class the components use.",
+    "sm": { "$value": "4px", "$description": "Checkbox, small accents" },
+    "md": { "$value": "6px", "$description": "Menu, select and command items" },
+    "lg": { "$value": "6px", "$description": "Buttons, inputs, selects, tabs" },
+    "xl": { "$value": "8px", "$description": "Cards, dialogs, popovers" },
+    "2xl": { "$value": "12px", "$description": "Toasts, large containers" },
+    "full": { "$value": "9999px", "$description": "Badges, avatars" }
+  },
+  "borderWidth": {
+    "$type": "dimension",
+    "default": { "$value": "1px" },
+    "strong": { "$value": "2px", "$description": "Focus ring, selected card" }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "$description": "Prefer borders. Shadows only for layers that float above content.",
+    "xs": { "$value": "0 1px 2px rgb(15 29 38 / 0.05)", "$description": "Inputs, outline buttons" },
+    "sm": { "$value": "0 1px 3px rgb(15 29 38 / 0.08), 0 1px 2px rgb(15 29 38 / 0.04)", "$description": "Cards (optional)" },
+    "md": { "$value": "0 4px 12px rgb(15 29 38 / 0.08), 0 1px 3px rgb(15 29 38 / 0.06)", "$description": "Popover, dropdown, select" },
+    "lg": { "$value": "0 12px 32px rgb(15 29 38 / 0.12), 0 2px 6px rgb(15 29 38 / 0.06)", "$description": "Dialog, sheet, toast" }
+  },
+  "motion": {
+    "$type": "duration",
+    "fast": { "$value": "120ms", "$description": "Hover, press" },
+    "base": { "$value": "180ms", "$description": "Open/close popover, dialog" }
+  },
+  "breakpoint": {
+    "$type": "dimension",
+    "$description": "Tailwind breakpoints used by layouts. iPad first: design at 1024×768 and 1180×820.",
+    "md": { "$value": "768px", "$description": "iPad portrait" },
+    "lg": { "$value": "1024px", "$description": "iPad landscape" },
+    "xl": { "$value": "1280px", "$description": "Desktop" }
+  },
+  "density": {
+    "$type": "dimension",
+    "$description": "Component sizes per density. Set with <html data-density=\"comfortable|compact\">. Comfortable is the default and meets the 44px touch target (OMS ADR-009).",
+    "comfortable": {
+      "control-h": { "$value": "44px", "$description": "Button, Input, Select, Tabs" },
+      "control-h-sm": { "$value": "36px", "$description": "Small controls in toolbars (hit area expanded to 44px)" },
+      "control-h-lg": { "$value": "48px" },
+      "row-h": { "$value": "48px", "$description": "Table body row" },
+      "row-head-h": { "$value": "44px", "$description": "Table header row" },
+      "icon-size": { "$value": "18px" },
+      "table-font-size": { "$value": "14px" },
+      "table-line-height": { "$value": "20px" },
+      "page-gutter": { "$value": "24px" },
+      "hit-min": { "$value": "44px" }
+    },
+    "compact": {
+      "control-h": { "$value": "32px" },
+      "control-h-sm": { "$value": "28px" },
+      "control-h-lg": { "$value": "36px" },
+      "row-h": { "$value": "36px" },
+      "row-head-h": { "$value": "32px" },
+      "icon-size": { "$value": "16px" },
+      "table-font-size": { "$value": "13px" },
+      "table-line-height": { "$value": "20px" },
+      "page-gutter": { "$value": "16px" },
+      "hit-min": { "$value": "0px" }
+    }
+  }
+}

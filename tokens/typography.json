@@ -1,0 +1,35 @@
+{
+  "$description": "Typography. Thai fonts must be loopless (ไม่มีหัว). Latin font is listed first so digits and Latin use its OpenType features (tnum, zero); Thai glyphs fall back to the Thai face.",
+  "font": {
+    "$type": "fontFamily",
+    "sans": {
+      "$value": ["IBM Plex Sans", "IBM Plex Sans Thai", "system-ui", "sans-serif"],
+      "$description": "UI text: Thai + English"
+    },
+    "mono": {
+      "$value": ["IBM Plex Mono", "IBM Plex Sans Thai", "ui-monospace", "monospace"],
+      "$description": "IDs, codes, SKUs, tracking numbers. Dotted zero separates 0 from O."
+    }
+  },
+  "fontWeight": {
+    "$type": "fontWeight",
+    "regular": { "$value": 400 },
+    "medium": { "$value": 500 },
+    "semibold": { "$value": 600 }
+  },
+  "type": {
+    "$type": "typography",
+    "$description": "Type scale. Each entry becomes a `type-<name>` Tailwind utility. Thai needs line-height ≥ 1.5 for body text so upper and lower vowels are not clipped.",
+    "display": { "$value": { "fontSize": "30px", "lineHeight": "38px", "fontWeight": 600, "letterSpacing": "-0.01em" }, "$description": "Dashboard numbers only" },
+    "h1": { "$value": { "fontSize": "24px", "lineHeight": "32px", "fontWeight": 600 }, "$description": "Page title" },
+    "h2": { "$value": { "fontSize": "20px", "lineHeight": "28px", "fontWeight": 600 }, "$description": "Section title" },
+    "h3": { "$value": { "fontSize": "18px", "lineHeight": "26px", "fontWeight": 600 }, "$description": "Card or dialog title" },
+    "h4": { "$value": { "fontSize": "16px", "lineHeight": "24px", "fontWeight": 600 }, "$description": "Group title" },
+    "body-lg": { "$value": { "fontSize": "16px", "lineHeight": "24px", "fontWeight": 400 }, "$description": "Long-form reading" },
+    "body": { "$value": { "fontSize": "14px", "lineHeight": "22px", "fontWeight": 400 }, "$description": "Default UI text" },
+    "body-strong": { "$value": { "fontSize": "14px", "lineHeight": "22px", "fontWeight": 500 }, "$description": "Emphasis, labels" },
+    "table": { "$value": { "fontSize": "var(--table-font-size)", "lineHeight": "var(--table-line-height)", "fontWeight": 400 }, "$description": "Table cells: 14/20 comfortable, 13/20 compact" },
+    "caption": { "$value": { "fontSize": "12px", "lineHeight": "18px", "fontWeight": 400 }, "$description": "Meta info, timestamps, counters" },
+    "code": { "$value": { "fontSize": "13px", "lineHeight": "20px", "fontWeight": 400, "fontFamily": "var(--font-mono)" }, "$description": "IDs and codes" }
+  }
+}

@@ -1,0 +1,1024 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "moove",
+  "homepage": "https://moove.in.th",
+  "items": [
+    {
+      "name": "moove-theme",
+      "type": "registry:item",
+      "title": "MOOVE theme",
+      "description": "Design tokens (colors, fonts, radius, shadows, density, type-* utilities), self-hosted IBM Plex fonts and base styles.",
+      "dependencies": [
+        "@fontsource/ibm-plex-sans@^5.3.0",
+        "@fontsource/ibm-plex-sans-thai@^5.3.0",
+        "@fontsource/ibm-plex-mono@^5.3.0",
+        "tw-animate-css@^1.4.0",
+        "shadcn@^4.23.0",
+        "cn@^0.5.1"
+      ],
+      "files": [
+        {
+          "path": "src/styles/tokens.css",
+          "type": "registry:file",
+          "target": "src/styles/moove/tokens.css"
+        },
+        {
+          "path": "src/styles/fonts.css",
+          "type": "registry:file",
+          "target": "src/styles/moove/fonts.css"
+        },
+        {
+          "path": "src/styles/base.css",
+          "type": "registry:file",
+          "target": "src/styles/moove/base.css"
+        },
+        {
+          "path": "src/styles/chart-themes.css",
+          "type": "registry:file",
+          "target": "src/styles/moove/chart-themes.css"
+        },
+        {
+          "path": "src/lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "docs": "Add to your Tailwind CSS entry, after @import \"tailwindcss\": @import \"./styles/moove/fonts.css\"; @import \"./styles/moove/tokens.css\"; @import \"./styles/moove/chart-themes.css\"; @import \"./styles/moove/base.css\"; then set <html data-density=\"comfortable\"> (or \"compact\")."
+    },
+    {
+      "name": "use-mobile",
+      "type": "registry:hook",
+      "title": "use-mobile",
+      "description": "Hook use-mobile",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/hooks/use-mobile.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "MOOVE-styled alert-dialog (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1",
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme",
+        "@moove/button"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/alert-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "MOOVE-styled pagination (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1",
+        "lucide-react@^1.65.0"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme",
+        "@moove/button"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "MOOVE-styled tabs (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "cn@^0.5.1",
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "MOOVE-styled card (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "MOOVE-styled input-group (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "cn@^0.5.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme",
+        "@moove/button",
+        "@moove/input",
+        "@moove/textarea"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/input-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "MOOVE-styled popover (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1",
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/popover.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "MOOVE-styled progress (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1",
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/progress.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "chart",
+      "type": "registry:ui",
+      "title": "Chart",
+      "description": "MOOVE-styled chart (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1",
+        "recharts@3.8.0"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/chart.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "title": "Hover Card",
+      "description": "MOOVE-styled hover-card (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1",
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/hover-card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "MOOVE-styled sheet (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1",
+        "lucide-react@^1.65.0",
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme",
+        "@moove/button"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "MOOVE-styled field (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "cn@^0.5.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme",
+        "@moove/label",
+        "@moove/separator"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "description": "MOOVE-styled scroll-area (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1",
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/scroll-area.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "MOOVE-styled label (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1",
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/label.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "title": "Sonner",
+      "description": "MOOVE-styled sonner (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "lucide-react@^1.65.0",
+        "sonner@^2.0.8"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/sonner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "MOOVE-styled empty (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "cn@^0.5.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/empty.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "MOOVE-styled tooltip (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1",
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "MOOVE-styled alert (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "cn@^0.5.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/alert.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "MOOVE-styled calendar (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1",
+        "lucide-react@^1.65.0",
+        "react-day-picker@^10.0.2"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme",
+        "@moove/button"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/calendar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "MOOVE-styled breadcrumb (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1",
+        "lucide-react@^1.65.0",
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "MOOVE-styled command (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cmdk@^1.1.1",
+        "cn@^0.5.1",
+        "lucide-react@^1.65.0"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme",
+        "@moove/dialog",
+        "@moove/input-group"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/command.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "MOOVE-styled toggle-group (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "cn@^0.5.1",
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme",
+        "@moove/toggle"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/toggle-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "MOOVE-styled avatar (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1",
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/avatar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "MOOVE-styled dialog (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1",
+        "lucide-react@^1.65.0",
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme",
+        "@moove/button"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "MOOVE-styled badge (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "cn@^0.5.1",
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "title": "Sidebar",
+      "description": "MOOVE-styled sidebar (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "cn@^0.5.1",
+        "lucide-react@^1.65.0",
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme",
+        "@moove/button",
+        "@moove/input",
+        "@moove/separator",
+        "@moove/sheet",
+        "@moove/skeleton",
+        "@moove/tooltip",
+        "@moove/use-mobile"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/sidebar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "MOOVE-styled table (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/table.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "MOOVE-styled separator (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1",
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "MOOVE-styled button (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "cn@^0.5.1",
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "description": "MOOVE-styled toggle (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "cn@^0.5.1",
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/toggle.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "MOOVE-styled checkbox (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1",
+        "lucide-react@^1.65.0",
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "MOOVE-styled spinner (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1",
+        "lucide-react@^1.65.0"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/spinner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "MOOVE-styled collapsible (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/collapsible.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "MOOVE-styled dropdown-menu (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1",
+        "lucide-react@^1.65.0",
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/dropdown-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "MOOVE-styled select (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1",
+        "lucide-react@^1.65.0",
+        "radix-ui@^1.8.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/select.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "MOOVE-styled textarea (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "MOOVE-styled input (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "MOOVE-styled skeleton (shadcn/ui radix-nova, restyled to MOOVE tokens).",
+      "dependencies": [
+        "cn@^0.5.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:block",
+      "title": "Data Table",
+      "description": "TanStack Table v9 data table with toolbar (search, faceted filter, column picker), sortable headers, pagination and loading/empty/error states.",
+      "dependencies": [
+        "@tanstack/react-table@^9.3.1",
+        "cn@^0.5.1",
+        "lucide-react@^1.65.0"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme",
+        "@moove/badge",
+        "@moove/button",
+        "@moove/command",
+        "@moove/dropdown-menu",
+        "@moove/input-group",
+        "@moove/popover",
+        "@moove/select",
+        "@moove/separator",
+        "@moove/skeleton",
+        "@moove/table"
+      ],
+      "files": [
+        {
+          "path": "src/components/patterns/data-table/features.ts",
+          "type": "registry:component",
+          "target": "components/patterns/data-table/features.ts"
+        },
+        {
+          "path": "src/components/patterns/data-table/data-table.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/data-table/data-table.tsx"
+        },
+        {
+          "path": "src/components/patterns/data-table/data-table-column-header.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/data-table/data-table-column-header.tsx"
+        },
+        {
+          "path": "src/components/patterns/data-table/data-table-faceted-filter.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/data-table/data-table-faceted-filter.tsx"
+        },
+        {
+          "path": "src/components/patterns/data-table/data-table-pagination.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/data-table/data-table-pagination.tsx"
+        },
+        {
+          "path": "src/components/patterns/data-table/data-table-toolbar.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/data-table/data-table-toolbar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "badge-overflow",
+      "type": "registry:block",
+      "title": "Badge overflow",
+      "description": "Shows the first N badges in a table cell and collapses the rest into a hover card.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@moove/moove-theme",
+        "@moove/badge",
+        "@moove/hover-card"
+      ],
+      "files": [
+        {
+          "path": "src/components/patterns/badge-overflow.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/badge-overflow.tsx"
+        }
+      ]
+    },
+    {
+      "name": "feedback-states",
+      "type": "registry:block",
+      "title": "Feedback states",
+      "description": "EmptyState (no-data / no-results) and ErrorState with retry.",
+      "dependencies": [
+        "lucide-react@^1.65.0"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme",
+        "@moove/button",
+        "@moove/empty"
+      ],
+      "files": [
+        {
+          "path": "src/components/patterns/feedback-states.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/feedback-states.tsx"
+        }
+      ]
+    },
+    {
+      "name": "confirm-dialog",
+      "type": "registry:block",
+      "title": "Confirm dialog",
+      "description": "Confirmation for hard-to-undo actions; async confirm with spinner, focus starts on Cancel.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@moove/moove-theme",
+        "@moove/alert-dialog",
+        "@moove/button",
+        "@moove/spinner"
+      ],
+      "files": [
+        {
+          "path": "src/components/patterns/confirm-dialog.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/confirm-dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "user-menu",
+      "type": "registry:block",
+      "title": "User menu",
+      "description": "Sidebar footer user card (shadcn sidebar-07 style) with a dropdown for role and sign out.",
+      "dependencies": [
+        "lucide-react@^1.65.0"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme",
+        "@moove/avatar",
+        "@moove/dropdown-menu",
+        "@moove/sidebar"
+      ],
+      "files": [
+        {
+          "path": "src/components/patterns/user-menu.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/user-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:block",
+      "title": "Date picker",
+      "description": "DatePicker (single date, month/year dropdowns, presets), DateRangeFilter (start and end pickers side by side) and DateRangePicker (single-field range calendar).",
+      "dependencies": [
+        "cn@^0.5.1",
+        "lucide-react@^1.65.0",
+        "react-day-picker@^10.0.2"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme",
+        "@moove/badge",
+        "@moove/button",
+        "@moove/calendar",
+        "@moove/field",
+        "@moove/popover",
+        "@moove/use-mobile"
+      ],
+      "files": [
+        {
+          "path": "src/components/patterns/date-picker.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/date-picker.tsx"
+        }
+      ]
+    },
+    {
+      "name": "chart-card",
+      "type": "registry:block",
+      "title": "Chart card",
+      "description": "Card around a chart with a table-view twin. Use with the chart component and the --chart-1…8 tokens.",
+      "dependencies": [
+        "lucide-react@^1.65.0"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme",
+        "@moove/button",
+        "@moove/card",
+        "@moove/table"
+      ],
+      "files": [
+        {
+          "path": "src/components/patterns/chart-card.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/chart-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "page-header",
+      "type": "registry:block",
+      "title": "Page header",
+      "description": "Page title, description, meta badges and actions.",
+      "dependencies": [
+        "cn@^0.5.1"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme"
+      ],
+      "files": [
+        {
+          "path": "src/components/patterns/page-header.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/page-header.tsx"
+        }
+      ]
+    },
+    {
+      "name": "app-shell",
+      "type": "registry:block",
+      "title": "App shell",
+      "description": "Collapsible sidebar navigation, top bar with breadcrumb and content area using the density gutter.",
+      "dependencies": [
+        "cn@^0.5.1",
+        "lucide-react@^1.65.0"
+      ],
+      "registryDependencies": [
+        "@moove/moove-theme",
+        "@moove/breadcrumb",
+        "@moove/collapsible",
+        "@moove/separator",
+        "@moove/sidebar"
+      ],
+      "files": [
+        {
+          "path": "src/components/patterns/app-shell.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/app-shell.tsx"
+        }
+      ]
+    }
+  ]
+}

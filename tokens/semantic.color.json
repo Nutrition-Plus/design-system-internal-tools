@@ -1,0 +1,216 @@
+{
+  "$description": "Semantic colors. Names follow shadcn/ui CSS variables, plus MOOVE extensions. Each becomes a CSS variable (--<name>) and a Tailwind color (bg-<name>, text-<name>, border-<name>).",
+  "color": {
+    "$type": "color",
+    "background": {
+      "$value": "{palette.slate.0}",
+      "$description": "Page and content surface"
+    },
+    "foreground": {
+      "$value": "{palette.slate.900}",
+      "$description": "Default text"
+    },
+    "foreground-secondary": {
+      "$value": "{palette.slate.700}",
+      "$description": "Labels, table headers"
+    },
+    "card": {
+      "$value": "{palette.slate.0}"
+    },
+    "card-foreground": {
+      "$value": "{palette.slate.900}"
+    },
+    "popover": {
+      "$value": "{palette.slate.0}"
+    },
+    "popover-foreground": {
+      "$value": "{palette.slate.900}"
+    },
+    "primary": {
+      "$value": "{palette.blue.600}",
+      "$description": "Main actions, links, selected items"
+    },
+    "primary-foreground": {
+      "$value": "{palette.slate.0}"
+    },
+    "primary-hover": {
+      "$value": "{palette.blue.700}"
+    },
+    "secondary": {
+      "$value": "{palette.slate.50}",
+      "$description": "Secondary background, grouping areas, secondary buttons"
+    },
+    "secondary-foreground": {
+      "$value": "{palette.slate.900}"
+    },
+    "secondary-hover": {
+      "$value": "{palette.slate.100}"
+    },
+    "muted": {
+      "$value": "{palette.slate.50}"
+    },
+    "muted-foreground": {
+      "$value": "{palette.slate.600}",
+      "$description": "Helper text, secondary info"
+    },
+    "foreground-subtle": {
+      "$value": "{palette.slate.550}",
+      "$description": "Quietest readable text: credits, handles. Do not use for content people need to read."
+    },
+    "field": {
+      "$value": "{palette.slate.100}",
+      "$description": "Fill of inputs, selects, checkboxes and segmented controls (no border)"
+    },
+    "field-hover": {
+      "$value": "{palette.slate.200}",
+      "$description": "Hover fill of controls"
+    },
+    "accent": {
+      "$value": "{palette.blue.50}",
+      "$description": "Hover/selected surface: menu items, selected rows, active nav"
+    },
+    "accent-foreground": {
+      "$value": "{palette.blue.600}"
+    },
+    "highlight": {
+      "$value": "{palette.teal.600}",
+      "$description": "Secondary accent for special tags (e.g. Note, New). Use sparingly."
+    },
+    "highlight-subtle": {
+      "$value": "{palette.teal.50}"
+    },
+    "highlight-foreground": {
+      "$value": "{palette.teal.700}"
+    },
+    "border": {
+      "$value": "{palette.slate.200}",
+      "$description": "Decorative dividers and card outlines"
+    },
+    "input": {
+      "$value": "{palette.slate.400}",
+      "$description": "Form control borders (needs ≥ 3:1)"
+    },
+    "ring": {
+      "$value": "{palette.blue.600}",
+      "$description": "Focus ring"
+    },
+    "destructive": {
+      "$value": "{palette.red.600}",
+      "$description": "Destructive actions and field errors"
+    },
+    "destructive-foreground": {
+      "$value": "{palette.slate.0}"
+    },
+    "destructive-hover": {
+      "$value": "{palette.red.700}"
+    },
+    "success": {
+      "$value": "{palette.green.500}",
+      "$description": "Indicator only (dot, icon, bar). Not for text."
+    },
+    "success-subtle": {
+      "$value": "{palette.green.100}"
+    },
+    "success-foreground": {
+      "$value": "{palette.green.800}"
+    },
+    "success-border": {
+      "$value": "{palette.green.200}"
+    },
+    "warning": {
+      "$value": "{palette.amber.500}",
+      "$description": "Indicator only (dot, icon, bar). Not for text."
+    },
+    "warning-subtle": {
+      "$value": "{palette.amber.100}"
+    },
+    "warning-foreground": {
+      "$value": "{palette.amber.800}"
+    },
+    "warning-border": {
+      "$value": "{palette.amber.200}"
+    },
+    "danger": {
+      "$value": "{palette.red.500}",
+      "$description": "Indicator only (dot, icon, bar). Not for text."
+    },
+    "danger-subtle": {
+      "$value": "{palette.red.100}"
+    },
+    "danger-foreground": {
+      "$value": "{palette.red.800}"
+    },
+    "danger-border": {
+      "$value": "{palette.red.200}"
+    },
+    "info": {
+      "$value": "{palette.sky.500}",
+      "$description": "Indicator only (dot, icon, bar). Not for text."
+    },
+    "info-subtle": {
+      "$value": "{palette.sky.100}"
+    },
+    "info-foreground": {
+      "$value": "{palette.sky.800}"
+    },
+    "info-border": {
+      "$value": "{palette.sky.200}"
+    },
+    "chart-1": {
+      "$value": "{palette.blue.500}",
+      "$description": "Chart series slot 1. Assign in fixed order, never cycle. Adjacent-pair CVD ΔE ≥ 8 and normal-vision ΔE ≥ 15 verified with validate_palette.js (light, #FFFFFF). Slots 3, 4, 5 are under 3:1 on white, so every chart ships a legend, tooltip and table view."
+    },
+    "chart-2": {
+      "$value": "{palette.chart.orange}",
+      "$description": "Chart series slot 2."
+    },
+    "chart-3": {
+      "$value": "{palette.chart.aqua}",
+      "$description": "Chart series slot 3."
+    },
+    "chart-4": {
+      "$value": "{palette.chart.yellow}",
+      "$description": "Chart series slot 4."
+    },
+    "chart-5": {
+      "$value": "{palette.chart.magenta}",
+      "$description": "Chart series slot 5."
+    },
+    "chart-6": {
+      "$value": "{palette.chart.green}",
+      "$description": "Chart series slot 6."
+    },
+    "chart-7": {
+      "$value": "{palette.chart.violet}",
+      "$description": "Chart series slot 7."
+    },
+    "chart-8": {
+      "$value": "{palette.chart.red}",
+      "$description": "Chart series slot 8."
+    },
+    "sidebar": {
+      "$value": "{palette.slate.50}"
+    },
+    "sidebar-foreground": {
+      "$value": "{palette.slate.900}"
+    },
+    "sidebar-primary": {
+      "$value": "{palette.blue.600}"
+    },
+    "sidebar-primary-foreground": {
+      "$value": "{palette.slate.0}"
+    },
+    "sidebar-accent": {
+      "$value": "{palette.blue.50}"
+    },
+    "sidebar-accent-foreground": {
+      "$value": "{palette.blue.600}"
+    },
+    "sidebar-border": {
+      "$value": "{palette.slate.200}"
+    },
+    "sidebar-ring": {
+      "$value": "{palette.blue.600}"
+    }
+  }
+}

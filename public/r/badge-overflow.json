@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge-overflow",
+  "title": "Badge overflow",
+  "description": "Shows the first N badges in a table cell and collapses the rest into a hover card.",
+  "dependencies": [],
+  "registryDependencies": [
+    "@moove/moove-theme",
+    "@moove/badge",
+    "@moove/hover-card"
+  ],
+  "files": [
+    {
+      "path": "src/components/patterns/badge-overflow.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { Badge } from \"@/components/ui/badge\"\nimport {\n  HoverCard,\n  HoverCardContent,\n  HoverCardTrigger,\n} from \"@/components/ui/hover-card\"\n\ntype BadgeOverflowProps = {\n  /** Badges to show, in priority order. */\n  items: React.ReactNode[]\n  /** How many badges stay visible before the rest collapse into \"…\". */\n  max?: number\n  /** Heading inside the hover card. */\n  label?: string\n}\n\n/**\n * Keeps table cells one line tall (badges never wrap, so every row has the same height): shows the first `max` badges and collapses the rest into a \"…\" badge.\n * Hovering or focusing \"…\" lists every badge. The full list is also exposed to screen readers\n * through the trigger's accessible name, so nothing is hidden from them.\n */\nfunction BadgeOverflow({\n  items,\n  max = 2,\n  label = \"ทั้งหมด\",\n}: BadgeOverflowProps) {\n  const visible = items.slice(0, max)\n  const hidden = items.length - visible.length\n\n  return (\n    <div\n      data-slot=\"badge-overflow\"\n      className=\"flex flex-nowrap items-center gap-1\"\n    >\n      {visible.map((item, i) => (\n        <React.Fragment key={i}>{item}</React.Fragment>\n      ))}\n      {hidden > 0 && (\n        <HoverCard openDelay={100} closeDelay={100}>\n          <HoverCardTrigger asChild>\n            <button\n              type=\"button\"\n              aria-label={`อีก ${hidden} รายการ`}\n              className=\"rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring\"\n            >\n              <Badge variant=\"secondary\" className=\"cursor-default px-2\">\n                …\n              </Badge>\n            </button>\n          </HoverCardTrigger>\n          <HoverCardContent align=\"start\" className=\"w-auto min-w-44 p-3\">\n            <p className=\"mb-2 text-xs text-muted-foreground\">\n              {label} ({items.length})\n            </p>\n            <div className=\"flex flex-col items-start gap-1\">\n              {items.map((item, i) => (\n                <React.Fragment key={i}>{item}</React.Fragment>\n              ))}\n            </div>\n          </HoverCardContent>\n        </HoverCard>\n      )}\n    </div>\n  )\n}\n\nexport { BadgeOverflow }\n",
+      "type": "registry:component",
+      "target": "components/patterns/badge-overflow.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

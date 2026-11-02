@@ -1,0 +1,19 @@
+import { Meta } from "@storybook/addon-docs/blocks"
+import { RadiusAndShadow } from "./foundations"
+
+<Meta title="Foundations/Radius, Border & Shadow" />
+
+# Radius, Border & Shadow
+
+- **Radius** เล็กกว่าค่าเริ่มต้นของ shadcn (10px) เพื่อให้เหมาะกับหน้าจอข้อมูล: ปุ่มและช่องกรอก 6px, การ์ดและ dialog 8px, badge แบบ pill
+- **Border** 1px เป็นค่าเริ่มต้น และ 2px สำหรับ focus ring
+  - `border-border` (#D5DEE5): เส้นแบ่งเพื่อตกแต่งและขอบการ์ด
+  - `border-input` (#7A8995): ขอบช่องกรอกและ checkbox ที่ผู้ใช้ต้องมองเห็น (≥ 3:1)
+- **Shadow** ใช้น้อย เฉพาะชั้นที่ลอยเหนือเนื้อหา: `xs` ช่องกรอก, `md` popover/dropdown, `lg` dialog/sheet/toast
+
+<RadiusAndShadow />
+
+## Focus
+
+ทุกการกระทำ (ปุ่ม ลิงก์ แท็บ checkbox) ใช้ **เส้น 2px สี Primary เว้นห่าง 2px** เมื่อใช้คีย์บอร์ด (`:focus-visible`) ซึ่งเห็นชัดบนพื้นขาว Secondary และ Accent
+ส่วนช่องกรอกเปลี่ยนขอบเป็น Primary พร้อมวงแสงอ่อน

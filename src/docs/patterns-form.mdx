@@ -1,0 +1,33 @@
+import { Canvas, Meta } from "@storybook/addon-docs/blocks"
+import * as OrderForm from "../examples/oms-order-form.stories"
+
+<Meta title="Patterns/Form" />
+
+# ฟอร์ม
+
+<Canvas of={OrderForm.Default} />
+
+## โครงสร้าง
+
+- จัดกลุ่มด้วย **Card** (หัวข้อ) และ `FieldGroup` / `FieldSet` ภายใน · ฟอร์มกว้างไม่เกิน `max-w-3xl` เพื่อให้อ่านง่าย
+- **Label อยู่บนช่อง** · ช่องที่ต้องกรอกมี `*` และบอกไว้ใต้หัวหน้า
+- ช่องที่สัมพันธ์กันวาง 2 คอลัมน์บน iPad/desktop และเป็น 1 คอลัมน์บนจอเล็ก
+- **Action bar** ติดด้านล่าง: ปุ่มหลักอยู่ขวาสุด ปุ่มยกเลิกเป็น outline
+
+## การตรวจและแสดงข้อผิดพลาด
+
+1. **ตรวจเมื่อออกจากช่อง (blur)** ไม่ตรวจระหว่างพิมพ์
+2. **เมื่อกดบันทึก** ตรวจทุกช่อง → แสดง **สรุปข้อผิดพลาด** (Alert `destructive`) ด้านบน แล้วย้าย focus ไปที่สรุป แต่ละข้อเป็นลิงก์ที่พาไปยังช่องนั้น
+3. แต่ละช่อง: `data-invalid` บน `Field`, `aria-invalid` บน control, `FieldError` ผูกด้วย `aria-describedby`
+4. ข้อความบอก **วิธีแก้** ไม่ใช่แค่บอกว่าผิด เช่น “รหัสไปรษณีย์ต้องเป็นตัวเลข 5 หลัก”
+
+<Canvas of={OrderForm.ValidationErrors} />
+
+## การบันทึก
+
+- ระหว่างบันทึก: ปุ่มแสดง Spinner + “กำลังบันทึก…” + disabled (กันกดซ้ำ)
+- สำเร็จ: `toast.success` พร้อมรหัสอ้างอิง
+- ไม่สำเร็จ: `toast.error` บอกสิ่งที่ทำต่อได้ และ **คงค่าทั้งหมดไว้**
+- ถ้า server ตอบ 409 `VERSION_CONFLICT` (OMS) ให้เปิด dialog เปรียบเทียบข้อมูลของผู้ใช้กับข้อมูลล่าสุด
+
+<Canvas of={OrderForm.SaveFailureKeepsValues} />
