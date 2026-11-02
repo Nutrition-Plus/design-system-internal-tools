@@ -1,0 +1,105 @@
+# CI/CD for the MOOVE design system.
+#   pull request / push  -> verify (tokens, tests, types, lint, Storybook tests, builds)
+#   push to main         -> verify, then deploy Storybook + the shadcn registry to GitHub Pages
+#
+# One-time setup in the GitHub repo: Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
+# Published layout:   https://<owner>.github.io/<repo>/        Storybook
+#                     https://<owner>.github.io/<repo>/r/      registry JSON ({name}.json)
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# New pushes cancel running checks on branches and PRs; a deploy on main is never cancelled midway.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+env:
+  CI: "true"
+  STORYBOOK_DISABLE_TELEMETRY: "1"
+
+jobs:
+  verify:
+    # The ruleset (.github/rulesets/protect-main.json) requires this exact check name before merging.
+    name: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.4
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Generated tokens are up to date
+        run: |
+          bun run tokens
+          if [ -n "$(git status --porcelain -- src/styles src/tokens tokens/build)" ]; then
+            echo "::error::Generated token files differ from tokens/*.json. Run 'bun run tokens' and commit the result."
+            git status --porcelain -- src/styles src/tokens tokens/build
+            exit 1
+          fi
+
+      - name: Token and contrast tests
+        run: bun test
+
+      - name: Typecheck
+        run: bun run typecheck
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Install Chromium for story tests
+        run: bunx playwright install --with-deps chromium
+
+      - name: Story tests (render, interactions, accessibility)
+        run: bun run test:stories
+
+      - name: Build Storybook
+        run: bun run build-storybook
+
+      - name: Build registry
+        run: bun run registry:build
+
+      - name: Assemble site
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        run: |
+          mkdir -p _site/r
+          cp -R storybook-static/. _site/
+          cp -R public/r/. _site/r/
+          touch _site/.nojekyll
+
+      - name: Upload Pages artifact
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  deploy:
+    needs: verify
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

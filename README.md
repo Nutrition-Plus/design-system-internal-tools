@@ -55,3 +55,14 @@ registry.json → public/r/   shadcn registry (@moove)
 | 5 | Patterns + Examples สำหรับผู้บริหาร | ✅ |
 | 6 | Registry + เอกสารการใช้งานและการดูแล | ✅ |
 | ถัดไป | ตัดสินใจ host ของ registry · CI · Date range picker · Combobox ขั้นสูง · Dark mode · Visual regression · sync กับ Figma | ⏳ |
+
+## Deploy (GitHub Pages)
+
+Merging to `main` publishes (see [CONTRIBUTING.md](CONTRIBUTING.md) for setup and branch protection):
+
+- Storybook: `https://<owner>.github.io/<repo>/`
+- shadcn registry: `https://<owner>.github.io/<repo>/r/{name}.json`
+
+Other systems register it with
+`bunx --bun shadcn@latest registry add @moove=https://<owner>.github.io/<repo>/r/{name}.json`.
+

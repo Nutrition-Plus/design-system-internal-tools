@@ -29,3 +29,6 @@ screenshots/
 storybook-static/
 *.tsbuildinfo
 debug-storybook.log
+
+_site/
+/public/r
