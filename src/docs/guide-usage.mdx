@@ -4,7 +4,55 @@ import { Meta } from "@storybook/addon-docs/blocks"
 
 # นำไปใช้ในระบบอื่น
 
-Design system นี้ส่งต่อเป็น **shadcn registry** (`@moove`) ตาม OMS ADR-009: โค้ดถูกคัดลอกเข้า repo ของแต่ละระบบ และระบบนั้นเป็นเจ้าของโค้ด
+มีสองวิธีในการนำไปใช้ และแนะนำวิธีแรก:
+
+1. **`bun add` (แนะนำ)**: ติดตั้งเป็น dependency ใช้ `styles.css` และ import components จากแพ็กเกจ เวอร์ชันถูกล็อกด้วย tag และ `bun.lock`
+2. **shadcn registry (`@moove`)** ตาม OMS ADR-009: โค้ดถูกคัดลอกเข้า repo ของแต่ละระบบ และระบบนั้นเป็นเจ้าของโค้ด ใช้เมื่อต้องแก้ component ในระบบนั้นโดยตรง
+
+## ติดตั้งด้วย bun add
+
+```bash
+bun add git+ssh://git@github.com/<org>/design-system-moove.git#v0.1.0
+```
+
+แล้วตั้งค่า CSS หลัก (ไฟล์ที่มี `@import "tailwindcss"`):
+
+```css
+@import "tailwindcss";
+@import "@moove/design-system/styles.css";
+@source "../node_modules/@moove/design-system/dist-lib";
+```
+
+- บรรทัด `@source` จำเป็น ไม่งั้น Tailwind จะไม่สร้าง class ที่ใช้ใน components
+- ตั้ง `<html lang="th" data-density="comfortable">` (หรือ `"compact"`) เหมือนวิธีด้านล่าง
+- ต้องมี React 19 และ Tailwind CSS 4 ในโปรเจกต์ (เป็น peer dependency)
+
+```tsx
+import { useState } from "react"
+import { useTable, type ColumnDef } from "@tanstack/react-table"
+import { Button, DataTable, DatePicker, PageHeader, dataTableFeatures, type DataTableFeatures } from "@moove/design-system"
+
+type Order = { id: string; orderNo: string }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const columns: ColumnDef<DataTableFeatures, Order, any>[] = [{ accessorKey: "orderNo", header: "เลขที่" }]
+
+function Orders({ orders }: { orders: Order[] }) {
+  const [date, setDate] = useState<Date | undefined>()
+  const table = useTable({ features: dataTableFeatures, columns, data: orders, getRowId: (r) => r.id })
+  return (
+    <>
+      <PageHeader title="คำสั่งซื้อ" actions={<Button>สร้างคำสั่งซื้อ</Button>} />
+      <DatePicker value={date} onChange={setDate} />
+      <DataTable table={table} caption="รายการคำสั่งซื้อ" />
+    </>
+  )
+}
+```
+
+ระบบต้องติดตั้ง `@tanstack/react-table` (v9) เองด้วย เพราะเรียก `useTable` โดยตรง DataTable รับ table instance ที่สร้างจาก `useTable` เสมอ
+
+`dist-lib/` ถูก commit ไว้ใน repo เพื่อให้ติดตั้งจาก git ได้โดยไม่ต้อง build ก่อน เมื่อแก้ `src/` ต้องรัน `bun run build:lib` และ commit ผลลัพธ์ด้วย (CI จะตรวจให้)
 
 ## โครงสร้าง
 
@@ -25,7 +73,7 @@ registry.json                 → bun run registry:build → public/r/*.json
 | Domain components (เช่น WorkStatusBadge, BlockerBadge) | repo ของแต่ละระบบ `src/components/domain/` | ทีมระบบนั้น |
 | Feature screens | repo ของแต่ละระบบ | ทีมระบบนั้น |
 
-## ติดตั้งในระบบใหม่ (Next.js หรือ Vite)
+## ติดตั้งผ่าน shadcn registry (Next.js หรือ Vite)
 
 ```bash
 # 1. โปรเจกต์ที่มี shadcn แล้ว (components.json) ใช้ base: radix

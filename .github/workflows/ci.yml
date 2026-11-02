@@ -50,6 +50,15 @@ jobs:
             exit 1
           fi
 
+      - name: Library build (dist-lib) is up to date
+        run: |
+          bun run build:lib
+          if [ -n "$(git status --porcelain -- dist-lib)" ]; then
+            echo "::error::dist-lib differs from src. Run 'bun run build:lib' and commit the result."
+            git status --porcelain -- dist-lib
+            exit 1
+          fi
+
       - name: Token and contrast tests
         run: bun test
 

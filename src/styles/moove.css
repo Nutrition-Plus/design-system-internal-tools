@@ -1,0 +1,17 @@
+/*
+ * MOOVE design system stylesheet. Consumers import it after Tailwind:
+ *   @import "tailwindcss";
+ *   @import "@moove/design-system/styles.css";
+ *   @source "../node_modules/@moove/design-system/dist-lib";
+ */
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "./fonts.css";
+/* Generated from tokens/*.json: colors, fonts, radius, shadows, density, type-* utilities. */
+@import "./tokens.css";
+/* Alternate chart color orders (data-chart-theme). */
+@import "./chart-themes.css";
+/* Base element styles, focus ring and touch targets. */
+@import "./base.css";
+
+@custom-variant dark (&:is(.dark *));
