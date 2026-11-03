@@ -5,6 +5,7 @@ import {
   DownloadIcon,
   EyeOffIcon,
   PlusIcon,
+  RefreshCwIcon,
   XIcon,
 } from "lucide-react"
 import { toast } from "sonner"
@@ -25,6 +26,7 @@ import {
 } from "@/components/patterns/data-table/features"
 import { EmptyState, ErrorState } from "@/components/patterns/feedback-states"
 import { PageHeader } from "@/components/patterns/page-header"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -338,15 +340,18 @@ export function OmsOrderList({
 
   return (
     <AnnotationsProvider show={annotations}>
-      <OmsShell
-        active="orders"
-        breadcrumbs={[{ label: "OMS", href: "#home" }, { label: "คำสั่งซื้อ" }]}
-      >
+      <OmsShell active="orders">
         <AnnotationLegend notes={NOTES} />
 
         <Annotated n={2} kind="standard">
           <PageHeader
             title="คำสั่งซื้อ"
+            meta={
+              <Badge variant="success">
+                <RefreshCwIcon data-icon="inline-start" />
+                ซิงก์ล่าสุด 09:00 น.
+              </Badge>
+            }
             description="คำสั่งซื้อจาก Shopee, Lazada, TikTok Shop และ LINE Shopping · ข้อมูลตัวอย่าง (สังเคราะห์)"
             actions={
               <>

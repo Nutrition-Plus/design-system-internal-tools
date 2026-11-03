@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- `AppShell` `brand` prop: company logo and name at the top of the sidebar (shadcn sidebar-07 pattern). Collapses to the logo; without `logo` it shows the first letter of `name`.
+
+### Changed
+- `AppShell`: the collapse button moved from the top bar into the sidebar header, as a small round button straddling the sidebar's right edge, level with the logo (chevron left when open, right when collapsed). In the mobile Sheet it is a close button inside the header.
+- `AppShell`: no top bar on screens ≥ 768px, so content starts at the top. Below 768px a slim bar keeps the button to open the menu and the brand name.
+
+### Removed (breaking)
+- `AppShell` props `breadcrumbs` and `headerEnd`. Put page status such as the last sync time in `PageHeader` `meta` or `actions`.
+
 ## 0.2.0 — 2026-11-02
 
 ### Added

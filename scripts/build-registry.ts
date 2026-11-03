@@ -117,7 +117,7 @@ const blocks: { name: string; title: string; description: string; files: string[
   { name: "date-picker", title: "Date picker", description: "DatePicker (single date, month/year dropdowns, presets), DateRangeFilter (start and end pickers side by side) and DateRangePicker (single-field range calendar).", files: ["src/components/patterns/date-picker.tsx"] },
   { name: "chart-card", title: "Chart card", description: "Card around a chart with a table-view twin. Use with the chart component and the --chart-1…8 tokens.", files: ["src/components/patterns/chart-card.tsx"] },
   { name: "page-header", title: "Page header", description: "Page title, description, meta badges and actions.", files: ["src/components/patterns/page-header.tsx"] },
-  { name: "app-shell", title: "App shell", description: "Collapsible sidebar navigation, top bar with breadcrumb and content area using the density gutter.", files: ["src/components/patterns/app-shell.tsx"] },
+  { name: "app-shell", title: "App shell", description: "Collapsible sidebar navigation with company brand and collapse button at the top, and the content area using the density gutter.", files: ["src/components/patterns/app-shell.tsx"] },
 ]
 
 for (const block of blocks) {

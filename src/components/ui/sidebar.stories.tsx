@@ -123,7 +123,7 @@ const meta = {
           '- `collapsible="icon"` ยุบเป็นแถบไอคอน และใส่ `tooltip` ให้ทุกเมนู เพื่อให้ยังรู้ว่าไอคอนคืออะไร',
           '- เมนูที่เปิดอยู่ใช้ `isActive` และ `aria-current="page"`',
           "- กด `Ctrl/⌘ + B` เพื่อยุบหรือขยาย · บนจอ < 768px จะเป็น Sheet",
-          "- ในแอปจริงใช้ผ่าน `AppShell` (ดู Components/Navigation) ซึ่งเพิ่ม top bar และ breadcrumb",
+          "- ในแอปจริงใช้ผ่าน `AppShell` (ดู Components/Navigation) ซึ่งเพิ่มชื่อบริษัทและปุ่มยุบหรือขยายที่ด้านบนของ sidebar",
         ].join("\n"),
       },
     },

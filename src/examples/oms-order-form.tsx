@@ -153,10 +153,7 @@ export function OmsOrderForm({ result = "success", annotations = false, initialV
 
   return (
     <AnnotationsProvider show={annotations}>
-      <OmsShell
-        active="orders"
-        breadcrumbs={[{ label: "OMS", href: "#home" }, { label: "คำสั่งซื้อ", href: "#orders" }, { label: "สร้างคำสั่งซื้อ" }]}
-      >
+      <OmsShell active="orders">
         <AnnotationLegend notes={NOTES} />
         <PageHeader
           title="สร้างคำสั่งซื้อ"

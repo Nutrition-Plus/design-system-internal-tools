@@ -5,7 +5,6 @@ import {
   HomeIcon,
   PackageIcon,
   PrinterIcon,
-  RefreshCwIcon,
   SettingsIcon,
   StickyNoteIcon,
   TagIcon,
@@ -21,8 +20,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-
-import { Badge } from "@/components/ui/badge"
 
 type Page = "home" | "orders" | "booking"
 
@@ -78,25 +75,17 @@ function nav(active: Page): NavGroup[] {
 
 export function OmsShell({
   active,
-  breadcrumbs,
   children,
 }: {
   active: Page
-  breadcrumbs: { label: string; href?: string }[]
   children: React.ReactNode
 }) {
   return (
     <AppShell
       // iPad (< 1280px): start with the icon rail so the table gets the width.
       defaultOpen={typeof window === "undefined" || window.innerWidth >= 1280}
+      brand={{ name: "MOOVE", description: "Order Management", href: "#home" }}
       nav={nav(active)}
-      breadcrumbs={breadcrumbs}
-      headerEnd={
-        <Badge variant="success" className="hidden sm:inline-flex">
-          <RefreshCwIcon data-icon="inline-start" />
-          ซิงก์ล่าสุด 09:00 น.
-        </Badge>
-      }
       footer={
         <>
           <SidebarMenu>
@@ -122,7 +111,7 @@ export function OmsShell({
               })
             }}
           />
-          <p className="text-foreground-subtle text-center text-[10px] leading-none group-data-[collapsible=icon]:hidden">
+          <p className="text-center text-[10px] leading-none text-foreground-subtle group-data-[collapsible=icon]:hidden">
             @nutrionplus
           </p>
         </>

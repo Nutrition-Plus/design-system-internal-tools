@@ -1000,16 +1000,14 @@
       "name": "app-shell",
       "type": "registry:block",
       "title": "App shell",
-      "description": "Collapsible sidebar navigation, top bar with breadcrumb and content area using the density gutter.",
+      "description": "Collapsible sidebar navigation with company brand and collapse button at the top, and the content area using the density gutter.",
       "dependencies": [
         "cn@^0.5.1",
         "lucide-react@^1.65.0"
       ],
       "registryDependencies": [
         "@moove/moove-theme",
-        "@moove/breadcrumb",
         "@moove/collapsible",
-        "@moove/separator",
         "@moove/sidebar"
       ],
       "files": [

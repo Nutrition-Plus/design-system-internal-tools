@@ -20,24 +20,30 @@ export type NavGroup = {
     label?: string;
     items: NavItem[];
 };
+export type AppShellBrand = {
+    /** Company or system name, e.g. "MOOVE". */
+    name: string;
+    /** Second line, e.g. the system name "OMS". */
+    description?: string;
+    /** Logo mark shown in a 32px square: an <img> or a Lucide icon element. Defaults to the first letter of `name`. */
+    logo?: React.ReactNode;
+    /** Makes the brand a link, usually to the home page. */
+    href?: string;
+};
 type AppShellProps = {
-    /** Optional sidebar header content. Empty by default: the sidebar starts with the menu. */
+    /** Company name and logo at the top of the sidebar (shadcn sidebar-07 pattern). Collapses to the logo. */
+    brand?: AppShellBrand;
+    /** Extra sidebar header content below the brand, e.g. a search field. */
     header?: React.ReactNode;
     nav: NavGroup[];
-    breadcrumbs?: {
-        label: string;
-        href?: string;
-    }[];
-    /** Right side of the top bar (user menu, sync status). */
-    headerEnd?: React.ReactNode;
     footer?: React.ReactNode;
     defaultOpen?: boolean;
     children: React.ReactNode;
 };
 /**
  * SidebarInset renders the page's <main> landmark, so children must not add another one.
- * Standard layout: collapsible sidebar (Sheet on < 768px), top bar with breadcrumb,
- * content on the white surface with the page gutter from the density token.
+ * Standard layout: collapsible sidebar (Sheet on < 768px) with the brand and collapse button at the top,
+ * content on the white surface with the page gutter from the density token. No top bar on desktop.
  */
-declare function AppShell({ header, nav, breadcrumbs, headerEnd, footer, defaultOpen, children, }: AppShellProps): React.JSX.Element;
+declare function AppShell({ brand, header, nav, footer, defaultOpen, children, }: AppShellProps): React.JSX.Element;
 export { AppShell };
