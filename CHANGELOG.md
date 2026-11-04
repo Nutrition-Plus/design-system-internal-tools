@@ -1,6 +1,12 @@
 # Changelog
 
-## Unreleased
+## 0.3.2 — 2026-11-04
+
+### Fixed
+- `package.json` version now matches the release tag. Tags `v0.3.0` and `v0.3.1` still report `0.2.0`.
+- Install commands in the README and the Storybook guide point to `v0.3.2` and the real repository URL.
+
+## 0.3.1 — 2026-11-03
 
 ### Added
 - `AppShell` `brand` prop: company logo and name at the top of the sidebar (shadcn sidebar-07 pattern). Collapses to the logo; without `logo` it shows the first letter of `name`.
@@ -10,7 +16,16 @@
 - `AppShell`: no top bar on screens ≥ 768px, so content starts at the top. Below 768px a slim bar keeps the button to open the menu and the brand name.
 
 ### Removed (breaking)
-- `AppShell` props `breadcrumbs` and `headerEnd`. Put page status such as the last sync time in `PageHeader` `meta` or `actions`.
+- `AppShell` props `breadcrumbs` and `headerEnd`. Put page status such as the last sync time in `PageHeader` `meta` or `actions`. This shipped in a patch release; check `AppShell` usage when you upgrade from 0.3.0 or earlier.
+
+## 0.3.0 — 2026-11-02
+
+### Added
+- `Input` `size` prop (`"sm"` | `"default"`). `size="sm"` uses the compact control height (`h-control-sm`) with tighter padding and smaller text.
+
+### Changed
+- `Select` `size="sm"` trigger has tighter padding and gap and smaller text.
+- `dist-lib/index.js` starts with `"use client"`, so server components in the Next.js App Router can import them.
 
 ## 0.2.0 — 2026-11-02
 
