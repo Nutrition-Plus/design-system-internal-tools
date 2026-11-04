@@ -6,6 +6,10 @@
 - `package.json` version now matches the release tag. Tags `v0.3.0` and `v0.3.1` still report `0.2.0`.
 - Install commands in the README and the Storybook guide point to `v0.3.2` and the real repository URL.
 
+### Changed
+- The package is internal only. `package.json` is `private` again, so `npm publish` is blocked; installing from git still works.
+- Install over SSH (`git+ssh://`), since the repository will be private. The Storybook guide explains how to give a consumer's CI read access with a deploy key.
+
 ## 0.3.1 — 2026-11-03
 
 ### Added
