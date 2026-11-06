@@ -28,6 +28,9 @@ A pull request can merge when:
 
 The checks live in `.github/workflows/ci.yml`. They only verify; nothing is deployed automatically.
 
+### Release
+Pushing a tag `vX.Y.Z` runs `.github/workflows/release.yml`. It runs the same `verify` checks, stops if the tag does not match `version` in `package.json`, and creates a GitHub Release using the matching section of `CHANGELOG.md` as the notes. Consumers install from that tag. Before tagging, make sure `package.json` and `CHANGELOG.md` already have the new version on `main`.
+
 ### One-time setup (repo admin)
 1. Create the GitHub repo and push `main`.
 2. **Settings → Rules → Rulesets → New ruleset → Import a ruleset** and choose `.github/rulesets/protect-main.json`. The rules do not apply until you import them: the file is only a template.
