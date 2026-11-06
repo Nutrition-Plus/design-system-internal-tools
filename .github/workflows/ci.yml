@@ -8,6 +8,7 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: read
@@ -76,6 +77,13 @@ jobs:
 
       - name: Build Storybook
         run: bun run build-storybook
+
+      - name: Upload Storybook for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook-static
+          path: storybook-static
+          retention-days: 14
 
       - name: Build registry
         run: bun run registry:build

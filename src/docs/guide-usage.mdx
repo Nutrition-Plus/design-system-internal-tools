@@ -11,8 +11,10 @@ import { Meta } from "@storybook/addon-docs/blocks"
 
 ## ติดตั้งด้วย bun add
 
+repo นี้เป็น private ใช้ภายในเท่านั้น ผู้ติดตั้งต้องมีสิทธิ์อ่าน repo (ขอได้จากทีม Design System) และตั้ง SSH key กับ GitHub ไว้แล้ว
+
 ```bash
-bun add git+ssh://git@github.com/<org>/design-system-moove.git#v0.1.0
+bun add git+ssh://git@github.com/Nutrition-Plus/design-system-internal-tools.git#v0.3.2
 ```
 
 แล้วตั้งค่า CSS หลัก (ไฟล์ที่มี `@import "tailwindcss"`):
@@ -53,6 +55,24 @@ function Orders({ orders }: { orders: Order[] }) {
 ระบบต้องติดตั้ง `@tanstack/react-table` (v9) เองด้วย เพราะเรียก `useTable` โดยตรง DataTable รับ table instance ที่สร้างจาก `useTable` เสมอ
 
 `dist-lib/` ถูก commit ไว้ใน repo เพื่อให้ติดตั้งจาก git ได้โดยไม่ต้อง build ก่อน เมื่อแก้ `src/` ต้องรัน `bun run build:lib` และ commit ผลลัพธ์ด้วย (CI จะตรวจให้)
+
+### ตั้งค่า CI ของระบบปลายทาง
+
+CI ต้องอ่าน repo นี้ได้ตอน `bun install` ใช้ deploy key แบบอ่านอย่างเดียว:
+
+1. สร้าง key คู่ใหม่ (ไม่ต้องตั้ง passphrase): `ssh-keygen -t ed25519 -N "" -C "ci-<ชื่อระบบ>" -f moove-ds-deploy-key`
+2. ใน repo design system: **Settings → Deploy keys → Add deploy key** ใส่ `moove-ds-deploy-key.pub` และไม่ติ๊ก "Allow write access" (ทีม Design System หรือ admin เป็นคนเพิ่ม)
+3. ใน repo ของระบบ: **Settings → Secrets and variables → Actions** เพิ่ม secret `MOOVE_DS_DEPLOY_KEY` เป็นเนื้อหาไฟล์ `moove-ds-deploy-key` แล้วลบไฟล์ key ออกจากเครื่อง
+4. ใน workflow ให้โหลด key ก่อน `bun install`:
+
+```yaml
+- uses: webfactory/ssh-agent@v0.10.0
+  with:
+    ssh-private-key: ${{ secrets.MOOVE_DS_DEPLOY_KEY }}
+- run: bun install --frozen-lockfile
+```
+
+ใช้ key แยกต่อระบบ จะได้ถอนสิทธิ์ทีละระบบได้
 
 ## โครงสร้าง
 

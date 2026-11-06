@@ -25,9 +25,13 @@ bun run storybook        # เปิดที่ localhost:8000 (ถ้า port 
 
 ต้องมี React 19 และ Tailwind CSS 4 ในโปรเจกต์ปลายทาง (เป็น peer dependency)
 
+repo นี้เป็น private ใช้ภายในเท่านั้น ผู้ติดตั้งต้องมีสิทธิ์อ่าน repo และตั้ง SSH key กับ GitHub ไว้แล้ว
+
 ```bash
-bun add git+https://github.com/Nutrition-Plus/design-system-internal-tools.git#v0.2.0
+bun add git+ssh://git@github.com/Nutrition-Plus/design-system-internal-tools.git#v0.3.2
 ```
+
+CI ของระบบปลายทางต้องมีสิทธิ์อ่าน repo นี้ด้วย ไม่งั้น `bun install` จะล้มเหลว ดูวิธีตั้ง deploy key ใน Storybook → **Guides/Using in your app**
 
 ใน CSS entry ของโปรเจกต์ (เช่น `src/index.css`):
 
